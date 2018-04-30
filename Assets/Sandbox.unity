@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffc6c7744b95f5a4b99090adc09ea56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PushFactor: 1
 --- !u!144 &19899336
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -897,6 +898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffc6c7744b95f5a4b99090adc09ea56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PushFactor: 1
 --- !u!114 &149768379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1046,7 +1048,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: 0.2}
 --- !u!33 &176229406
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1562,6 +1564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffc6c7744b95f5a4b99090adc09ea56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PushFactor: 1
 --- !u!144 &330467292
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -1847,6 +1850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffc6c7744b95f5a4b99090adc09ea56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PushFactor: 1
 --- !u!114 &388981495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1860,7 +1864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 1365813256}
-  GrabSpeed: 2
+  GrabSpeed: 20
 --- !u!144 &388981496
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -2215,6 +2219,16 @@ Prefab:
       propertyPath: RateOfFire
       value: 0.15
       objectReference: {fileID: 0}
+    - target: {fileID: 114761710945498326, guid: dc108fded6454c141a7eee97854ffcf5,
+        type: 2}
+      propertyPath: Accuracy
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 114761710945498326, guid: dc108fded6454c141a7eee97854ffcf5,
+        type: 2}
+      propertyPath: MinAccuracy
+      value: 24
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc108fded6454c141a7eee97854ffcf5, type: 2}
   m_IsPrefabParent: 0
@@ -2303,7 +2317,7 @@ MeshCollider:
   m_GameObject: {fileID: 555867739}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
   m_CookingOptions: 14
@@ -2463,7 +2477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff1f9d4172b4fcbb99afb56428e7096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HitPoints: 60
+  HitPoints: 20
   DamageFactor: 1
 --- !u!114 &607863349
 MonoBehaviour:
@@ -2477,6 +2491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffc6c7744b95f5a4b99090adc09ea56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PushFactor: 20
 --- !u!114 &607863350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2581,6 +2596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffc6c7744b95f5a4b99090adc09ea56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PushFactor: 1
 --- !u!114 &648675812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3352,6 +3368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffc6c7744b95f5a4b99090adc09ea56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PushFactor: 1
 --- !u!114 &852464923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3862,6 +3879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffc6c7744b95f5a4b99090adc09ea56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PushFactor: 1
 --- !u!114 &889154786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4315,6 +4333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffc6c7744b95f5a4b99090adc09ea56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PushFactor: 1
 --- !u!114 &932282505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5287,6 +5306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffc6c7744b95f5a4b99090adc09ea56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PushFactor: 1
 --- !u!114 &1262291843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5476,7 +5496,7 @@ MeshCollider:
   m_GameObject: {fileID: 1302193839}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
   m_CookingOptions: 14
@@ -5757,6 +5777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffc6c7744b95f5a4b99090adc09ea56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PushFactor: 1
 --- !u!144 &1392143093
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -6742,7 +6763,7 @@ MonoBehaviour:
   VertSensitivity: 0.03
   Weapon: {fileID: 857558801}
   MaxElevation: 16
-  MinElevation: -8
+  MinElevation: -50
   AimPoint: {fileID: 473697125}
 --- !u!1 &1805949609
 GameObject:
@@ -6880,6 +6901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffc6c7744b95f5a4b99090adc09ea56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PushFactor: 1
 --- !u!144 &1821728484
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -7372,6 +7394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffc6c7744b95f5a4b99090adc09ea56e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PushFactor: 0.5
 --- !u!114 &1924286767
 MonoBehaviour:
   m_ObjectHideFlags: 0

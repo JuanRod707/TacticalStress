@@ -4,6 +4,7 @@ namespace Code.BodyParts
 {
     public class Pushable :MonoBehaviour
     {
+        public float PushFactor = 1f;
         private Rigidbody myBody;
 
         void Start()
@@ -18,7 +19,7 @@ namespace Code.BodyParts
 
             pushVector *= -strength / distance;
 
-            myBody.AddForce(pushVector);
+            myBody.AddForce(pushVector * PushFactor);
         }
     }
 }
