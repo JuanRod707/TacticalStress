@@ -25,4 +25,22 @@ public struct Coordinate
         var side2 = coord.YCoord - YCoord;
         return (int) Mathf.Sqrt(side1*side1 + side2*side2);
     }
+
+    public bool IsValidInMatrix(int x, int y)
+    {
+        var isValidX = XCoord >= 0 && XCoord < x;
+        var isValidY = YCoord >= 0 && YCoord < y;
+
+        return isValidX & isValidY;
+    }
+
+    public bool Is(int x, int y)
+    {
+        return XCoord == x && YCoord == y;
+    }
+
+    public bool Is(Coordinate coord)
+    {
+        return Is(coord.XCoord, coord.YCoord);
+    }
 }

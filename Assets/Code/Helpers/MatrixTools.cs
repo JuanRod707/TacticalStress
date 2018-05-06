@@ -53,7 +53,7 @@ namespace Code.Helpers
 
         protected IEnumerable<T> GetAllNeighbours(Coordinate coord)
         {
-            var allAdjacent = GridHelper.FindAllNeighbours(coord);
+            var allAdjacent = GridHelper.Find4Neighbours(coord);
             return allAdjacent.Select(x => FindTile(x));
         }
     }

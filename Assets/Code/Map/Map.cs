@@ -1,19 +1,51 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using Assets.Code.Map;
+using Code.Helpers;
 
-namespace Assets.Code.Map
+namespace Code.Map
 {
     public class Map
     {
         public int SizeX;
-        public int SizeY;
+        public int SizeZ;
         public int Floors;
+
+        List<CellData> cells;
+        private CellData[,] matrix;
+
+        public IEnumerable<CellData> Cells { get { return cells; } }
+        
+        public Map(int sizeX, int sizeZ)
+        {
+            SizeX = sizeX;
+            SizeZ = sizeZ;
+            matrix = new CellData[sizeX, sizeZ];
+            cells = new List<CellData>();
+
+            for (int x = 0; x < sizeX; x++)
+            {
+                for (int z = 0; z < sizeZ; z++)
+                {
+                    var cell = new CellData(x, z);
+                    RandomizePassable(cell);
+                    matrix[x, z] = cell;
+                    cells.Add(cell);
+                }
+            }
+        }
 
         public CellData FindCell(Coordinate coord)
         {
-            return new CellData();
+            return matrix[coord.XCoord, coord.YCoord];
+        }
+
+        void RandomizePassable(CellData cell)
+        {
+            var roll = RandomService.GetRandom(0, 10);
+            if (roll > 1)
+            {
+                cell.Passable = true;
+            }
         }
     }
 }

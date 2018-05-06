@@ -96,12 +96,22 @@ namespace Code.Helpers
             return Compass.East;
         }
 
-        public static IEnumerable<Coordinate> FindAllNeighbours(Coordinate coord)
+        public static IEnumerable<Coordinate> Find8Neighbours(Coordinate coord)
         {
             var dirsToCheck = new[]
             {
                 Compass.West, Compass.NorthWest, Compass.North, Compass.NorthEast, Compass.East, Compass.SouthEast,
                 Compass.South, Compass.SouthWest
+            };
+
+            return dirsToCheck.Select(dir => FindNeighbour(coord, dir)).ToList();
+        }
+
+        public static IEnumerable<Coordinate> Find4Neighbours(Coordinate coord)
+        {
+            var dirsToCheck = new[]
+            {
+                Compass.West, Compass.North, Compass.East, Compass.South
             };
 
             return dirsToCheck.Select(dir => FindNeighbour(coord, dir)).ToList();

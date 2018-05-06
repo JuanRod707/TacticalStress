@@ -1,14 +1,23 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
-public class NavNode : MonoBehaviour
+public class NavNode
 {
     public List<NavNode> Neighbours;
-    public LineRenderer[] NavLines;
-    public Coordinate Coord;
-    public bool Passable;
+
+    public Coordinate Coord { get; set; }
+
+    public NavNode(int x, int y)
+    {
+        Coord = new Coordinate(x, y);
+        Neighbours = new List<NavNode>();
+    }
+
+    public NavNode(Coordinate coord)
+    {
+        Coord = new Coordinate(coord.XCoord, coord.YCoord);
+        Neighbours = new List<NavNode>();
+    }
 
     public void SetAllNeighbours(IEnumerable<NavNode> nodes)
     {
@@ -17,30 +26,6 @@ public class NavNode : MonoBehaviour
 
     public void AddNeighbour(NavNode node)
     {
-        if (Neighbours == null)
-        {
-            Neighbours = new List<NavNode>();
-        }
-
         Neighbours.Add(node);
-    }
-
-    public void DrawLines()
-    {
-        int index = 0;
-
-        foreach (var l in NavLines)
-        {
-            if (index < Neighbours.Count)
-            {
-                l.SetPosition(0, transform.position + (Vector3.up * 0.6f));
-                l.SetPosition(1, Neighbours[index].transform.position + (Vector3.up * 0.6f));
-                index++;
-            }
-            else
-            {
-                l.enabled = false;
-            }
-        }
     }
 }
