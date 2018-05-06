@@ -41,10 +41,13 @@ namespace Code.Map
 
         void RandomizePassable(CellData cell)
         {
-            var roll = RandomService.GetRandom(0, 10);
-            if (roll > 1)
+            if(!GridHelper.IsBorderTile(cell.Coordinate, SizeX, SizeZ))
             {
-                cell.Passable = true;
+                var roll = RandomService.GetRandom(0, 100);
+                if (roll > 5)
+                {
+                    cell.Passable = true;
+                }
             }
         }
     }

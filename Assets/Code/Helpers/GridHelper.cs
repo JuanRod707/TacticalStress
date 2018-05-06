@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace Code.Helpers
 {
@@ -152,6 +153,14 @@ namespace Code.Helpers
         public static bool AreOpposite(Compass dir1, Compass dir2)
         {
             return GetOpposite(dir1) == dir2;
+        }
+
+        public static bool IsBorderTile(Coordinate coord, int SizeX, int SizeY)
+        {
+            var isBorderX = coord.XCoord == 0 || coord.XCoord == SizeX - 1;
+            var isBorderY = coord.YCoord == 0 || coord.YCoord == SizeY - 1;
+
+            return isBorderY | isBorderX;
         }
     }
 }
