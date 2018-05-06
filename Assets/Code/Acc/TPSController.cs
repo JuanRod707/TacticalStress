@@ -9,6 +9,7 @@ public class TPSController : MonoBehaviour
     public float MaxElevation;
     public float MinElevation;
     public Transform AimPoint;
+    public Transform ControlledBody;
 
     private Vector3 previousMousePos;
 
@@ -24,7 +25,7 @@ public class TPSController : MonoBehaviour
         var mouse = Input.mousePosition;
         var mouseDelta = mouse - previousMousePos;
 
-        transform.Rotate(Vector3.up * mouseDelta.x * Sensitivity);
+        ControlledBody.Rotate(Vector3.up * mouseDelta.x * Sensitivity);
         AimPoint.Translate(new Vector3(0f, mouseDelta.y * VertSensitivity, 0f));
 
         var elevation = AimPoint.localPosition;
@@ -45,7 +46,7 @@ public class TPSController : MonoBehaviour
     void Move()
     {
         var moveVector = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
-        transform.Translate(moveVector * Speed);
+        ControlledBody.Translate(moveVector * Speed);
     }
 
     void Attack()
