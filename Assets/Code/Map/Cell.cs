@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Code.Map;
+using UnityEngine;
 
 namespace Code.Map
 {
@@ -7,9 +8,10 @@ namespace Code.Map
         public Vector3 DebugLinesOffset;
         public bool ShowNavMesh;
 
-        private NavNode navNode;
         private MapGen map;
 
+        public NavNode NavNode { get; private set; }
+        public CellData CellData { get; private set; }
         public Coordinate Coordinate { get; private set; }
         
         void Update()
@@ -20,16 +22,17 @@ namespace Code.Map
             }
         }
 
-        public void Initialize(MapGen map, NavNode node)
+        public void Initialize(MapGen map, NavNode node, CellData data)
         {
             this.map = map;
-            navNode = node;
+            NavNode = node;
+            CellData = data;
             Coordinate = new Coordinate(node.Coord.XCoord, node.Coord.YCoord);
         }
 
         void DrawLines()
         {
-            foreach (var n in navNode.Neighbours)
+            foreach (var n in NavNode.Neighbours)
             {
                 var targetCell = map.FindCell(n.Coord);
                 Debug.DrawLine(transform.position + DebugLinesOffset, targetCell.transform.position + DebugLinesOffset);

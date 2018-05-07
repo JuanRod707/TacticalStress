@@ -15,14 +15,13 @@ public class MapGen : MonoBehaviour
     public Transform CellContainer;
 
     private List<Cell> cellList;
-    private NavMap navigationMap;
     Map map;
     int xCoord = 0;
     int zCoord = 0;
 
-    private float TileRotation;
-    
-	void Start ()
+    public NavMap NavigationMap { get; private set; }
+
+    void Start ()
 	{
         map = new Map(SizeX, SizeZ);
         cellList = new List<Cell>();
@@ -39,15 +38,15 @@ public class MapGen : MonoBehaviour
                 , cellData.Coordinate.YCoord * CellDimension), Quaternion.identity).GetComponent<Cell>();
             cell.transform.SetParent(CellContainer);
 
-            cell.Initialize(this, navigationMap.GetNavNode(cellData.Coordinate));
+            cell.Initialize(this, NavigationMap.GetNavNode(cellData.Coordinate), cellData);
             cellList.Add(cell);
         }
     }
 
     private void GenerateNavigationMap()
     {
-        navigationMap = new NavMap();
-        navigationMap.GenerateNavMap(map);
+        NavigationMap = new NavMap();
+        NavigationMap.GenerateNavMap(map);
     }
 
     public Cell FindCell(Coordinate coord)

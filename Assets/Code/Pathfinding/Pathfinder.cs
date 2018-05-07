@@ -5,7 +5,7 @@ using System.Linq;
 
 public class Pathfinder : MonoBehaviour {
 
-    public static IEnumerable<NavNode> FindBestPath(NavNode source, NavNode target, NavNode[,] graph)
+    public static IEnumerable<NavNode> FindBestPath(NavNode source, NavNode target, IEnumerable<NavNode> graph)
     {
         var dist = new Dictionary<NavNode, int>();
         var prev = new Dictionary<NavNode, NavNode>();
