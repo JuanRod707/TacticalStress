@@ -12,7 +12,9 @@ namespace Code.Tactical
         public float StopDistance;
         public Transform MoveBody;
         public LayerMask FloorLayer;
-        
+        public TPSController ManualControl;
+        public GameObject Crosshair;
+
         private bool isMoving;
         private int targetIndex;
         private Transform targetLocation;
@@ -76,6 +78,33 @@ namespace Code.Tactical
             {
                 MoveToTarget();
             }
+        }
+
+        void Activate()
+        {
+            this.enabled = true;
+            ManualControl.Deactivate();
+            Crosshair.SetActive(false);
+        }
+
+        void Deactivate()
+        {
+            this.enabled = false;
+            ManualControl.Activate();
+            Crosshair.SetActive(true);
+        }
+
+        public void ChangeControlMode()
+        {
+            if (enabled)
+            {
+                Deactivate();
+            }
+            else
+            {
+                Activate();
+            }
+
         }
     }
 }

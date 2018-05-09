@@ -10,6 +10,7 @@ public class TPSController : MonoBehaviour
     public float MinElevation;
     public Transform AimPoint;
     public Transform ControlledBody;
+    
 
     private Vector3 previousMousePos;
 
@@ -55,5 +56,17 @@ public class TPSController : MonoBehaviour
         {
             Weapon.Shoot();
         }
+    }
+
+    public void Activate()
+    {
+        this.enabled = true;
+        Weapon.enabled = true;
+    }
+
+    public void Deactivate()
+    {
+        this.enabled = false;
+        Weapon.enabled = false;
     }
 }
