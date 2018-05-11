@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Code.Map;
 using UnityEngine;
+using Compass = Code.Map.Compass;
 
 namespace Code.Helpers
 {

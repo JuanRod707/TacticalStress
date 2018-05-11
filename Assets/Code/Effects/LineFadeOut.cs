@@ -1,28 +1,29 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class LineFadeOut : MonoBehaviour
+namespace Code.Effects
 {
-    public float LifeTime;
-
-    private float alphaAmount;
-    private float alphaDecay;
-    private LineRenderer renderer;
-
-    void Start()
+    public class LineFadeOut : MonoBehaviour
     {
-        alphaAmount = 1f;
-        alphaDecay = 1f / LifeTime;
-        renderer = GetComponent<LineRenderer>();
-        Destroy(this.gameObject, LifeTime);
-    }
+        public float LifeTime;
 
-    void Update()
-    {
-        alphaAmount -= Time.deltaTime * alphaDecay;
+        private float alphaAmount;
+        private float alphaDecay;
+        private LineRenderer renderer;
 
-        var alpha = new [] { new GradientAlphaKey(alphaAmount, 0.5f) };
-        renderer.colorGradient.alphaKeys = alpha;
+        void Start()
+        {
+            alphaAmount = 1f;
+            alphaDecay = 1f / LifeTime;
+            renderer = GetComponent<LineRenderer>();
+            Destroy(this.gameObject, LifeTime);
+        }
+
+        void Update()
+        {
+            alphaAmount -= Time.deltaTime * alphaDecay;
+
+            var alpha = new [] { new GradientAlphaKey(alphaAmount, 0.5f) };
+            renderer.colorGradient.alphaKeys = alpha;
+        }
     }
 }

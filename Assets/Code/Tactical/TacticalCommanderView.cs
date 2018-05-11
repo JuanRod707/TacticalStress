@@ -1,7 +1,10 @@
 ﻿using System.Linq;
+using Code.Directors;
 using Code.Helpers;
 using Code.Map;
+using Code.Pathfinding;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Code.Tactical
 {
@@ -13,6 +16,7 @@ namespace Code.Tactical
         public LayerMask ActorLayer;
         public MapGen map;
         public GameObject Selector;
+        public ModeSwitcher ModeSwitcher;
 
         TacticalController selectedActor;
 
@@ -24,22 +28,35 @@ namespace Code.Tactical
                 CommandSelect();
             }
 
+            if (Input.GetMouseButtonDown(1))
+            {
+                Deselect();
+            }
+
+
             if (Input.GetKeyDown(KeyCode.Space) && selectedActor != null)
             {
                 selectedActor.ChangeControlMode();
+
+                if (selectedActor.enabled)
+                {
+                    ModeSwitcher.SwitchToTacticalMode();
+                }
+                else
+                {
+                    ModeSwitcher.SwitchToActionMode(selectedActor.ManualControl);
+                }
+            }
+            
+        }
+
+        void CommandSelect()
+        {
+            if (selectedActor != null && selectedActor.enabled)
+            {
+                return;
             }
 
-            MoveCamera();
-        }
-
-        void MoveCamera()
-        {
-            var moveVector = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
-            View.transform.position = View.transform.position + (moveVector * PanSpeed);
-        }
-
-        public void CommandSelect()
-        {
             var hit = ClickSpace(ActorLayer);
             if (hit.DidHit)
             {
@@ -50,9 +67,9 @@ namespace Code.Tactical
             }
         }
 
-        public void CommandMove()
+        void CommandMove()
         {
-            if (selectedActor == null)
+            if (selectedActor == null || !selectedActor.enabled)
             {
                 return;
             }
@@ -66,6 +83,18 @@ namespace Code.Tactical
 
                 selectedActor.SetPath(path.Select(n => map.FindCell(n.Coord).transform).ToList());
             }
+        }
+
+        void Deselect()
+        {
+            if (selectedActor == null || !selectedActor.enabled)
+            {
+                return;
+            }
+
+            selectedActor = null;
+            Selector.SetActive(false);
+
         }
 
         PhysicalHit ClickSpace(LayerMask lookForItems)

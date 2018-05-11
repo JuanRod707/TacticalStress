@@ -1,4 +1,4 @@
-﻿using Assets.Code.Map;
+﻿using Code.Pathfinding;
 using UnityEngine;
 
 namespace Code.Map

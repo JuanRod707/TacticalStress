@@ -1,13 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class AutoDispose : MonoBehaviour
+namespace Code.Effects
 {
-    public float LifeTime;
-
-    void Start()
+    public class AutoDispose : MonoBehaviour
     {
-        Destroy(this.gameObject, LifeTime);
+        public float LifeTime;
+
+        void Start()
+        {
+            Destroy(this.gameObject, LifeTime);
+        }
     }
 }

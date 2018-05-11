@@ -1,14 +1,14 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public struct Pair<T>
+﻿namespace Code.Helpers
 {
-    public T Value1;
-    public T Value2;
-
-    public Pair(T v1, T v2)
+    public struct Pair<T>
     {
-        Value1 = v1;
-        Value2 = v2;
+        public T Value1;
+        public T Value2;
+
+        public Pair(T v1, T v2)
+        {
+            Value1 = v1;
+            Value2 = v2;
+        }
     }
 }

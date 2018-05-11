@@ -1,22 +1,25 @@
 ﻿using UnityEngine;
 
-public class AdvancedCrosshair : MonoBehaviour
+namespace Code.Acc
 {
-    public float MinDimension;
-    public float MaxDimension;
-    public float CrossGrowthFactor;
-
-    private RectTransform myRect;
-
-    void Start()
+    public class AdvancedCrosshair : MonoBehaviour
     {
-        myRect = GetComponent<RectTransform>();
-    }
+        public float MinDimension;
+        public float MaxDimension;
+        public float CrossGrowthFactor;
 
-    public void UpdateDimension(float inaccuracy)
-    {
-        var dim = (-inaccuracy * CrossGrowthFactor) + MinDimension;
+        private RectTransform myRect;
 
-        myRect.sizeDelta = new Vector2(dim, dim);
+        void Start()
+        {
+            myRect = GetComponent<RectTransform>();
+        }
+
+        public void UpdateDimension(float inaccuracy)
+        {
+            var dim = (-inaccuracy * CrossGrowthFactor) + MinDimension;
+
+            myRect.sizeDelta = new Vector2(dim, dim);
+        }
     }
 }

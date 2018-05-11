@@ -1,14 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ForceMove : MonoBehaviour
+namespace Code.Sandbox
 {
-    public Vector3 ForceDirection;
-    public float PushStrength;
-	
-	void Start ()
+    public class ForceMove : MonoBehaviour
     {
-		GetComponent<Rigidbody>().AddForce(ForceDirection * PushStrength);
-	}
+        public Vector3 ForceDirection;
+        public float PushStrength;
+	
+        void Start ()
+        {
+            GetComponent<Rigidbody>().AddForce(ForceDirection * PushStrength);
+        }
+    }
 }

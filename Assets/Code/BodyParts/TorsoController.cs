@@ -1,18 +1,21 @@
 ﻿using UnityEngine;
 
-public class TorsoController : MonoBehaviour
+namespace Code.BodyParts
 {
-    public Transform TargetView;
-
-    void Update()
+    public class TorsoController : MonoBehaviour
     {
-        if (TargetView != null)
-        {
-            this.transform.LookAt(TargetView);
-        }
+        public Transform TargetView;
 
-        var eul = this.transform.eulerAngles;
-        eul.z = 0f;
-        this.transform.eulerAngles = eul;
+        void Update()
+        {
+            if (TargetView != null)
+            {
+                this.transform.LookAt(TargetView);
+            }
+
+            var eul = this.transform.eulerAngles;
+            eul.z = 0f;
+            this.transform.eulerAngles = eul;
+        }
     }
 }

@@ -1,72 +1,75 @@
 ﻿using UnityEngine;
 
-public class TPSController : MonoBehaviour
+namespace Code.Acc
 {
-    public float Speed;
-    public float Sensitivity;
-    public float VertSensitivity;
-    public Rifle Weapon;
-    public float MaxElevation;
-    public float MinElevation;
-    public Transform AimPoint;
-    public Transform ControlledBody;
-    
-
-    private Vector3 previousMousePos;
-
-    void Update()
+    public class TPSController : MonoBehaviour
     {
-        Look();
-        Move();
-        Attack();
-    }
+        public float Speed;
+        public float Sensitivity;
+        public float VertSensitivity;
+        public Rifle Weapon;
+        public float MaxElevation;
+        public float MinElevation;
+        public Transform AimPoint;
+        public Transform ControlledBody;
+        public Transform ShoulderCamera;
 
-    void Look()
-    {
-        var mouse = Input.mousePosition;
-        var mouseDelta = mouse - previousMousePos;
+        private Vector3 previousMousePos;
 
-        ControlledBody.Rotate(Vector3.up * mouseDelta.x * Sensitivity);
-        AimPoint.Translate(new Vector3(0f, mouseDelta.y * VertSensitivity, 0f));
-
-        var elevation = AimPoint.localPosition;
-        if (elevation.y < MinElevation)
+        void Update()
         {
-            elevation.y = MinElevation;
-            AimPoint.localPosition = elevation;
-        }
-        else if (elevation.y > MaxElevation)
-        {
-            elevation.y = MaxElevation;
-            AimPoint.localPosition = elevation;
+            Look();
+            //Move();
+            Attack();
         }
 
-        previousMousePos = mouse;
-    }
-
-    void Move()
-    {
-        var moveVector = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
-        ControlledBody.Translate(moveVector * Speed);
-    }
-
-    void Attack()
-    {
-        if (Input.GetMouseButton(0))
+        void Look()
         {
-            Weapon.Shoot();
+            var mouse = Input.mousePosition;
+            var mouseDelta = mouse - previousMousePos;
+
+            ControlledBody.Rotate(Vector3.up * mouseDelta.x * Sensitivity);
+            AimPoint.Translate(new Vector3(0f, mouseDelta.y * VertSensitivity, 0f));
+
+            var elevation = AimPoint.localPosition;
+            if (elevation.y < MinElevation)
+            {
+                elevation.y = MinElevation;
+                AimPoint.localPosition = elevation;
+            }
+            else if (elevation.y > MaxElevation)
+            {
+                elevation.y = MaxElevation;
+                AimPoint.localPosition = elevation;
+            }
+
+            previousMousePos = mouse;
         }
-    }
 
-    public void Activate()
-    {
-        this.enabled = true;
-        Weapon.enabled = true;
-    }
+        void Move()
+        {
+            var moveVector = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+            ControlledBody.Translate(moveVector * Speed);
+        }
 
-    public void Deactivate()
-    {
-        this.enabled = false;
-        Weapon.enabled = false;
+        void Attack()
+        {
+            if (Input.GetMouseButton(0))
+            {
+                Weapon.Shoot();
+            }
+        }
+
+        public void Activate()
+        {
+            this.enabled = true;
+            Weapon.enabled = true;
+        }
+
+        public void Deactivate()
+        {
+            this.enabled = false;
+            Weapon.enabled = false;
+        }
     }
 }

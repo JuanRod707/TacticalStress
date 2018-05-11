@@ -2,143 +2,146 @@
 using Code.BodyParts;
 using UnityEngine;
 
-public class Rifle : MonoBehaviour
+namespace Code.Acc
 {
-    public float RateOfFire;
-    public float Accuracy;
-    public float AimDistance;
-    public float Range;
-    public float Recoil;
-    public float AimRecovery;
-    public float MinAccuracy;
-    public float PushForce;
-    public float DamagePerRound;
-
-    public Transform MuzzleSpot;
-
-    public GameObject ShotLinePf;
-    public GameObject HitParticleWall;
-    public GameObject HitParticleCharacter;
-    public ParticleSystem MuzzleEffect;
-    public AdvancedCrosshair AdvCrosshair;
-
-    private AudioSource fireSfx;
-    private bool isCycling;
-    float currentAccuracy;
-
-    private float Inaccuracy
+    public class Rifle : MonoBehaviour
     {
-        get { return 1 - (100f / currentAccuracy); }
-    }
+        public float RateOfFire;
+        public float Accuracy;
+        public float AimDistance;
+        public float Range;
+        public float Recoil;
+        public float AimRecovery;
+        public float MinAccuracy;
+        public float PushForce;
+        public float DamagePerRound;
 
-    void Start()
-    {
-        fireSfx = GetComponent<AudioSource>();
-        currentAccuracy = Accuracy;
-    }
+        public Transform MuzzleSpot;
 
-    void Update()
-    {
-        if (!isCycling && currentAccuracy < Accuracy)
+        public GameObject ShotLinePf;
+        public GameObject HitParticleWall;
+        public GameObject HitParticleCharacter;
+        public ParticleSystem MuzzleEffect;
+        public AdvancedCrosshair AdvCrosshair;
+
+        private AudioSource fireSfx;
+        private bool isCycling;
+        float currentAccuracy;
+
+        private float Inaccuracy
         {
-            currentAccuracy += AimRecovery;
+            get { return 1 - (100f / currentAccuracy); }
         }
 
-        AdvCrosshair.UpdateDimension(Inaccuracy);       
-    }
+        void Start()
+        {
+            fireSfx = GetComponent<AudioSource>();
+            currentAccuracy = Accuracy;
+        }
 
-    void DebugStuff()
-    {
-        var aimPoint = GetRandomArcPoint();
-        Debug.DrawRay(MuzzleSpot.position, aimPoint - MuzzleSpot.position);
-    }
+        void Update()
+        {
+            if (!isCycling && currentAccuracy < Accuracy)
+            {
+                currentAccuracy += AimRecovery;
+            }
 
-    public void Shoot()
-    {
-        if (!isCycling)
+            AdvCrosshair.UpdateDimension(Inaccuracy);       
+        }
+
+        void DebugStuff()
         {
             var aimPoint = GetRandomArcPoint();
-            var firePosition = MuzzleSpot.position;
-            var ray = new Ray(firePosition, aimPoint - firePosition);
-            RaycastHit hit;
-            
-            if (Physics.Raycast(ray, out hit, Range))
+            Debug.DrawRay(MuzzleSpot.position, aimPoint - MuzzleSpot.position);
+        }
+
+        public void Shoot()
+        {
+            if (!isCycling)
             {
-                if (hit.rigidbody != null)
+                var aimPoint = GetRandomArcPoint();
+                var firePosition = MuzzleSpot.position;
+                var ray = new Ray(firePosition, aimPoint - firePosition);
+                RaycastHit hit;
+            
+                if (Physics.Raycast(ray, out hit, Range))
                 {
-                    var bodyPart = hit.rigidbody.GetComponent<BodyPart>();
-                    if (bodyPart != null)
+                    if (hit.rigidbody != null)
                     {
-                        bodyPart.ReceiveDamage(DamagePerRound);
+                        var bodyPart = hit.rigidbody.GetComponent<BodyPart>();
+                        if (bodyPart != null)
+                        {
+                            bodyPart.ReceiveDamage(DamagePerRound);
+                        }
+
+                        var pushable = hit.rigidbody.GetComponent<Pushable>();
+                        if (pushable != null)
+                        {
+                            pushable.Push(hit.point, PushForce);
+                            DisplayHit(hit.point, HitParticleCharacter);
+                        }
+                    }
+                    else
+                    {
+                        DisplayHit(hit.point, HitParticleWall);
                     }
 
-                    var pushable = hit.rigidbody.GetComponent<Pushable>();
-                    if (pushable != null)
-                    {
-                        pushable.Push(hit.point, PushForce);
-                        DisplayHit(hit.point, HitParticleCharacter);
-                    }
+
+                    DisplayShot(hit.point);
                 }
                 else
                 {
-                    DisplayHit(hit.point, HitParticleWall);
+                    DisplayShot(aimPoint);
+                }
+            
+                if (currentAccuracy > 1 && currentAccuracy > MinAccuracy)
+                {
+                    currentAccuracy -= Recoil;
                 }
 
-
-                DisplayShot(hit.point);
+                fireSfx.Play();
+                DisplayMuzzle();
+                StartCoroutine(CycleBullet());
             }
-            else
-            {
-                DisplayShot(aimPoint);
-            }
-            
-            if (currentAccuracy > 1 && currentAccuracy > MinAccuracy)
-            {
-                currentAccuracy -= Recoil;
-            }
-
-            fireSfx.Play();
-            DisplayMuzzle();
-            StartCoroutine(CycleBullet());
         }
-    }
 
-    IEnumerator CycleBullet()
-    {
-        isCycling = true;
-        yield return new WaitForSeconds(RateOfFire);
-        isCycling = false;
-    }
-
-    Vector3 GetRandomArcPoint()
-    {
-        var randomPoint = Random.insideUnitSphere * Inaccuracy;
-        var cam = Camera.main.transform;
-        var result = (cam.forward * Range) + randomPoint;
-
-        var ray = new Ray(cam.position, result);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, Range))
+        IEnumerator CycleBullet()
         {
-            result = hit.point;
+            isCycling = true;
+            yield return new WaitForSeconds(RateOfFire);
+            isCycling = false;
         }
 
-        return result;
-    }
+        Vector3 GetRandomArcPoint()
+        {
+            var randomPoint = Random.insideUnitSphere * Inaccuracy;
+            var cam = Camera.main.transform;
+            var result = (cam.forward * Range) + randomPoint;
 
-    void DisplayShot(Vector3 hitPoint)
-    {
-        var shotLine = Instantiate(ShotLinePf).GetComponent<LineRenderer>();
-        shotLine.SetPositions(new [] { MuzzleSpot.position, hitPoint });
-    }
+            var ray = new Ray(cam.position, result);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, Range))
+            {
+                result = hit.point;
+            }
 
-    void DisplayHit(Vector3 hitPoint, GameObject hitParticle)
-    {
-        Instantiate(hitParticle, hitPoint, Quaternion.identity);
-    }
+            return result;
+        }
 
-    void DisplayMuzzle()
-    {
-        MuzzleEffect.Emit(1);
+        void DisplayShot(Vector3 hitPoint)
+        {
+            var shotLine = Instantiate(ShotLinePf).GetComponent<LineRenderer>();
+            shotLine.SetPositions(new [] { MuzzleSpot.position, hitPoint });
+        }
+
+        void DisplayHit(Vector3 hitPoint, GameObject hitParticle)
+        {
+            Instantiate(hitParticle, hitPoint, Quaternion.identity);
+        }
+
+        void DisplayMuzzle()
+        {
+            MuzzleEffect.Emit(1);
+        }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Assets.Code.Map;
 using Code.Helpers;
 
 namespace Code.Map
