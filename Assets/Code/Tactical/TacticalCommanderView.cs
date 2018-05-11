@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Code.Directors;
 using Code.Helpers;
 using Code.Map;
@@ -11,17 +12,22 @@ namespace Code.Tactical
     public class TacticalCommanderView : MonoBehaviour
     {
         public Camera View;
-        public float PanSpeed;
         public LayerMask FloorLayer;
         public LayerMask ActorLayer;
         public MapGen map;
         public GameObject Selector;
         public ModeSwitcher ModeSwitcher;
+        public LineRenderer MovementLine;
 
         TacticalController selectedActor;
 
+        private IEnumerable<Transform> calculatedPath;
+
         void Update()
         {
+            calculatedPath = CalculatePath();
+            DrawMovementLine();
+
             if (Input.GetMouseButtonDown(0))
             {
                 CommandMove();
@@ -46,8 +52,7 @@ namespace Code.Tactical
                 {
                     ModeSwitcher.SwitchToActionMode(selectedActor.ManualControl);
                 }
-            }
-            
+            }   
         }
 
         void CommandSelect()
@@ -57,7 +62,7 @@ namespace Code.Tactical
                 return;
             }
 
-            var hit = ClickSpace(ActorLayer);
+            var hit = MouseOverSpace(ActorLayer);
             if (hit.DidHit)
             {
                 selectedActor = hit.HitInfo.collider.GetComponent<TacticalController>();
@@ -74,15 +79,33 @@ namespace Code.Tactical
                 return;
             }
 
-            var hit = ClickSpace(FloorLayer);
+            if (calculatedPath == null)
+                return;
+
+            selectedActor.SetPath(calculatedPath);
+        }
+
+        IEnumerable<Transform> CalculatePath()
+        {
+            if (selectedActor == null)
+                return null;
+
+            var hit = MouseOverSpace(FloorLayer);
             if (hit.DidHit)
             {
                 var cell = hit.HitInfo.collider.GetComponentInParent<Cell>();
+                if (cell.NavNode == selectedActor.GetCurrentNavNode)
+                {
+                    return null;
+                }
+
                 var path = Pathfinder.FindBestPath(selectedActor.GetCurrentNavNode, cell.NavNode,
                     map.NavigationMap.Graph);
 
-                selectedActor.SetPath(path.Select(n => map.FindCell(n.Coord).transform).ToList());
+                return path.Select(n => map.FindCell(n.Coord).transform).ToList();
             }
+
+            return null;
         }
 
         void Deselect()
@@ -97,7 +120,7 @@ namespace Code.Tactical
 
         }
 
-        PhysicalHit ClickSpace(LayerMask lookForItems)
+        PhysicalHit MouseOverSpace(LayerMask lookForItems)
         {
             var ray = View.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -107,6 +130,18 @@ namespace Code.Tactical
             }
 
             return new PhysicalHit(false, hit);
+        }
+
+        void DrawMovementLine()
+        {
+            if (calculatedPath == null)
+                return;
+            MovementLine.positionCount = calculatedPath.Count();
+
+            for (int i=0;i < calculatedPath.Count(); i++)
+            {
+                MovementLine.SetPosition(i, calculatedPath.ToArray()[i].position);
+            }
         }
     }
 }
