@@ -41,3 +41,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: PathLine
+    uniqueID: 4277279097
+    locked: 0

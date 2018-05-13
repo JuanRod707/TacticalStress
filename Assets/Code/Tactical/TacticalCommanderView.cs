@@ -4,8 +4,8 @@ using Code.Directors;
 using Code.Helpers;
 using Code.Map;
 using Code.Pathfinding;
+using Code.Tactical.VisualElements;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace Code.Tactical
 {
@@ -16,17 +16,34 @@ namespace Code.Tactical
         public LayerMask ActorLayer;
         public MapGen map;
         public GameObject Selector;
+        public GameObject MovementTargetMarker;
         public ModeSwitcher ModeSwitcher;
-        public LineRenderer MovementLine;
+
+        public MovementLine MovementLine;
+        public MovementMarker MovementMarker;
+
+        public MovementLine DestinationLine;
+        public MovementMarker DestinationMarker;
 
         TacticalController selectedActor;
 
         private IEnumerable<Transform> calculatedPath;
+        private Cell targettedCell;
+
+        private bool SelectedActorReady
+        {
+            get { return selectedActor != null && selectedActor.ReadyToMove; }
+        }
 
         void Update()
         {
-            calculatedPath = CalculatePath();
-            DrawMovementLine();
+            CheckCellUnderMouse();
+
+            if (SelectedActorReady && calculatedPath != null)
+            {
+                MovementLine.Show(calculatedPath);
+                MovementMarker.Show(calculatedPath);
+            }
 
             if (Input.GetMouseButtonDown(0))
             {
@@ -42,22 +59,13 @@ namespace Code.Tactical
 
             if (Input.GetKeyDown(KeyCode.Space) && selectedActor != null)
             {
-                selectedActor.ChangeControlMode();
-
-                if (selectedActor.enabled)
-                {
-                    ModeSwitcher.SwitchToTacticalMode();
-                }
-                else
-                {
-                    ModeSwitcher.SwitchToActionMode(selectedActor.ManualControl);
-                }
+                SwitchMode();
             }   
         }
 
         void CommandSelect()
         {
-            if (selectedActor != null && selectedActor.enabled)
+            if (selectedActor != null)
             {
                 return;
             }
@@ -66,6 +74,7 @@ namespace Code.Tactical
             if (hit.DidHit)
             {
                 selectedActor = hit.HitInfo.collider.GetComponent<TacticalController>();
+                selectedActor.Select(DestinationLine, DestinationMarker);
                 Selector.SetActive(true);
                 Selector.transform.SetParent(selectedActor.MoveBody);
                 Selector.transform.localPosition = Vector3.zero;
@@ -74,33 +83,27 @@ namespace Code.Tactical
 
         void CommandMove()
         {
-            if (selectedActor == null || !selectedActor.enabled)
+            if (SelectedActorReady)
             {
-                return;
+                if (calculatedPath == null)
+                    return;
+
+                selectedActor.SetPath(calculatedPath);
+                HideVisualElements();
             }
-
-            if (calculatedPath == null)
-                return;
-
-            selectedActor.SetPath(calculatedPath);
         }
 
         IEnumerable<Transform> CalculatePath()
         {
-            if (selectedActor == null)
-                return null;
-
-            var hit = MouseOverSpace(FloorLayer);
-            if (hit.DidHit)
+            if (SelectedActorReady && targettedCell != null)
             {
-                var cell = hit.HitInfo.collider.GetComponentInParent<Cell>();
-                if (cell.NavNode == selectedActor.GetCurrentNavNode)
+                var path = Pathfinder.FindBestPath(selectedActor.GetCurrentNavNode, targettedCell.NavNode,
+                    map.NavigationMap.Graph);
+
+                if (path == null)
                 {
                     return null;
                 }
-
-                var path = Pathfinder.FindBestPath(selectedActor.GetCurrentNavNode, cell.NavNode,
-                    map.NavigationMap.Graph);
 
                 return path.Select(n => map.FindCell(n.Coord).transform).ToList();
             }
@@ -110,14 +113,32 @@ namespace Code.Tactical
 
         void Deselect()
         {
-            if (selectedActor == null || !selectedActor.enabled)
+            if (SelectedActorReady)
             {
-                return;
+                selectedActor = null;
+                Selector.SetActive(false);
+                HideVisualElements();
             }
+        }
 
-            selectedActor = null;
-            Selector.SetActive(false);
+        void HideVisualElements()
+        {
+            MovementMarker.Hide();
+            MovementLine.Hide();
+        }
 
+        void CheckCellUnderMouse()
+        {
+            var hit = MouseOverSpace(FloorLayer);
+            if (hit.DidHit)
+            {
+                var newCell = hit.HitInfo.collider.GetComponentInParent<Cell>();
+                if (targettedCell != newCell)
+                {
+                    targettedCell = newCell;
+                    calculatedPath = CalculatePath();
+                }
+            }
         }
 
         PhysicalHit MouseOverSpace(LayerMask lookForItems)
@@ -132,15 +153,18 @@ namespace Code.Tactical
             return new PhysicalHit(false, hit);
         }
 
-        void DrawMovementLine()
+        void SwitchMode()
         {
-            if (calculatedPath == null)
-                return;
-            MovementLine.positionCount = calculatedPath.Count();
+            selectedActor.ChangeControlMode();
 
-            for (int i=0;i < calculatedPath.Count(); i++)
+            if (SelectedActorReady)
             {
-                MovementLine.SetPosition(i, calculatedPath.ToArray()[i].position);
+                ModeSwitcher.SwitchToTacticalMode();
+            }
+            else
+            {
+                ModeSwitcher.SwitchToActionMode(selectedActor.ManualControl);
+                HideVisualElements();
             }
         }
     }

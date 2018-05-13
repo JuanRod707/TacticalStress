@@ -1,9 +1,9 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Code.Acc;
 using Code.Map;
 using Code.Pathfinding;
+using Code.Tactical.VisualElements;
 using UnityEngine;
 
 namespace Code.Tactical
@@ -21,6 +21,13 @@ namespace Code.Tactical
         private int targetIndex;
         private Transform targetLocation;
         private List<Transform> path;
+        MovementLine destinationLine;
+        MovementMarker destinationMarker;
+
+        public bool ReadyToMove
+        {
+            get { return enabled & !isMoving; }
+        }
 
         public NavNode GetCurrentNavNode
         {
@@ -42,8 +49,17 @@ namespace Code.Tactical
             targetIndex = 0;
             targetLocation = path.First();
             isMoving = true;
+
+            destinationLine.Show(path);
+            destinationMarker.Show(path);
         }
 
+        public void Select(MovementLine line, MovementMarker marker)
+        {
+            destinationLine = line;
+            destinationMarker = marker;
+        }
+        
         void CheckPointReached()
         {
             MoveBody.position = targetLocation.position;
@@ -51,13 +67,14 @@ namespace Code.Tactical
             if (targetLocation == path.Last())
             {
                 isMoving = false;
+                HideVisualElements();
             }
             else
             {
                 targetIndex++;
                 targetLocation = path[targetIndex];
+                destinationLine.Show(path.Where(x => path.IndexOf(x) >= targetIndex));
             }
-
         }
 
         void MoveToTarget()
@@ -106,7 +123,12 @@ namespace Code.Tactical
             {
                 Activate();
             }
+        }
 
+        void HideVisualElements()
+        {
+            destinationMarker.Hide();
+            destinationLine.Hide();
         }
     }
 }

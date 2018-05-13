@@ -19,7 +19,7 @@ namespace Code.Pathfinding
             get { return navigationNodes; }
         }
 
-        public void GenerateNavMap(Map.Map map)
+        public void GenerateNavMap(Map.Map map, bool generateOnly4Neighbours)
         {
             navigationNodes = new List<NavNode>();
 
@@ -31,7 +31,7 @@ namespace Code.Pathfinding
             foreach (var cell in map.Cells.Where(c => c.Passable))
             {
                 var node = GetNavNode(cell.Coordinate);
-                var nbs = GridHelper.Find4Neighbours(node.Coord);
+                var nbs = generateOnly4Neighbours ? GridHelper.Find4Neighbours(node.Coord) : GridHelper.Find8Neighbours(node.Coord);
                 foreach (var nb in nbs.Where(c => c.IsValidInMatrix(map.SizeX, map.SizeZ)))
                 {
                     var candidate = GetNavNode(nb);

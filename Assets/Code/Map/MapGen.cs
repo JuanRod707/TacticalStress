@@ -9,7 +9,9 @@ namespace Code.Map
     {
         public int SizeX;
         public int SizeZ;
+        public int WallChance;
         public float CellDimension;
+        public bool SimpleNavigation;
         public GameObject FloorCell;
         public GameObject WallCell;
         public Transform CellContainer;
@@ -23,7 +25,7 @@ namespace Code.Map
 
         void Start ()
         {
-            map = new Map(SizeX, SizeZ);
+            map = new Map(SizeX, SizeZ, WallChance);
             cellList = new List<Cell>();
             GenerateNavigationMap();
             CellPlacementRoutine();
@@ -46,7 +48,7 @@ namespace Code.Map
         private void GenerateNavigationMap()
         {
             NavigationMap = new NavMap();
-            NavigationMap.GenerateNavMap(map);
+            NavigationMap.GenerateNavMap(map, SimpleNavigation);
         }
 
         public Cell FindCell(Coordinate coord)

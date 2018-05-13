@@ -14,7 +14,7 @@ namespace Code.Map
 
         public IEnumerable<CellData> Cells { get { return cells; } }
         
-        public Map(int sizeX, int sizeZ)
+        public Map(int sizeX, int sizeZ, int wallChance)
         {
             SizeX = sizeX;
             SizeZ = sizeZ;
@@ -26,7 +26,7 @@ namespace Code.Map
                 for (int z = 0; z < sizeZ; z++)
                 {
                     var cell = new CellData(x, z);
-                    RandomizePassable(cell);
+                    RandomizePassable(cell, wallChance);
                     matrix[x, z] = cell;
                     cells.Add(cell);
                 }
@@ -38,12 +38,12 @@ namespace Code.Map
             return matrix[coord.XCoord, coord.YCoord];
         }
 
-        void RandomizePassable(CellData cell)
+        void RandomizePassable(CellData cell, int wallChance)
         {
             if(!GridHelper.IsBorderTile(cell.Coordinate, SizeX, SizeZ))
             {
                 var roll = RandomService.GetRandom(0, 100);
-                if (roll > 5)
+                if (roll > wallChance)
                 {
                     cell.Passable = true;
                 }
