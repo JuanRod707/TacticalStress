@@ -7839,7 +7839,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &109916274
 Transform:
   m_ObjectHideFlags: 0
@@ -21555,7 +21555,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &660907154
 Transform:
   m_ObjectHideFlags: 0
@@ -25459,16 +25459,6 @@ Prefab:
       propertyPath: Crosshair
       value: 
       objectReference: {fileID: 229934950}
-    - target: {fileID: 114320395845948110, guid: 5d02bc3ab93559044b74c8416cfa2ffc,
-        type: 2}
-      propertyPath: MovementLine
-      value: 
-      objectReference: {fileID: 109916275}
-    - target: {fileID: 114320395845948110, guid: 5d02bc3ab93559044b74c8416cfa2ffc,
-        type: 2}
-      propertyPath: MovementMarker
-      value: 
-      objectReference: {fileID: 1601021037}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5d02bc3ab93559044b74c8416cfa2ffc, type: 2}
   m_IsPrefabParent: 0
@@ -30678,6 +30668,36 @@ Prefab:
     - target: {fileID: 1000909033621024, guid: 5d02bc3ab93559044b74c8416cfa2ffc, type: 2}
       propertyPath: m_Name
       value: BlueGuy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 224505509926955432, guid: 5d02bc3ab93559044b74c8416cfa2ffc,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224505509926955432, guid: 5d02bc3ab93559044b74c8416cfa2ffc,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224505509926955432, guid: 5d02bc3ab93559044b74c8416cfa2ffc,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224505509926955432, guid: 5d02bc3ab93559044b74c8416cfa2ffc,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224505509926955432, guid: 5d02bc3ab93559044b74c8416cfa2ffc,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224505509926955432, guid: 5d02bc3ab93559044b74c8416cfa2ffc,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5d02bc3ab93559044b74c8416cfa2ffc, type: 2}
@@ -40144,8 +40164,8 @@ MonoBehaviour:
   ModeSwitcher: {fileID: 1354975169}
   MovementLine: {fileID: 1938495095}
   MovementMarker: {fileID: 660907156}
-  DestinationLine: {fileID: 0}
-  DestinationMarker: {fileID: 0}
+  DestinationLine: {fileID: 109916275}
+  DestinationMarker: {fileID: 1601021037}
 --- !u!4 &1354975168
 Transform:
   m_ObjectHideFlags: 0
@@ -49931,7 +49951,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1601021035
 Transform:
   m_ObjectHideFlags: 0
@@ -63717,7 +63737,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!120 &1938495093
 LineRenderer:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Assets.Code.Actors;
 using Code.Acc;
 using Code.Map;
 using Code.Pathfinding;
@@ -16,6 +17,8 @@ namespace Code.Tactical
         public LayerMask FloorLayer;
         public TPSController ManualControl;
         public GameObject Crosshair;
+        public ActorStats Actor;
+        public int MovementCost;
 
         private bool isMoving;
         private int targetIndex;
@@ -45,13 +48,16 @@ namespace Code.Tactical
 
         public void SetPath(IEnumerable<Transform> path)
         {
-            this.path = path.ToList();
-            targetIndex = 0;
-            targetLocation = path.First();
-            isMoving = true;
+            if (Actor.CommitTimeAction((path.Count() - 1) * MovementCost))
+            {
+                this.path = path.ToList();
+                targetIndex = 0;
+                targetLocation = path.First();
+                isMoving = true;
 
-            destinationLine.Show(path);
-            destinationMarker.Show(path);
+                destinationLine.Show(path);
+                destinationMarker.Show(path);
+            }
         }
 
         public void Select(MovementLine line, MovementMarker marker)
