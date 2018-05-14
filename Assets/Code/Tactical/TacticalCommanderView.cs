@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Code.Actors;
 using Code.Directors;
 using Code.Helpers;
 using Code.Map;
@@ -18,6 +19,7 @@ namespace Code.Tactical
         public GameObject Selector;
         public GameObject MovementTargetMarker;
         public ModeSwitcher ModeSwitcher;
+        public ActorStats[] Squad;
 
         public MovementLine MovementLine;
         public MovementMarker MovementMarker;
@@ -155,16 +157,27 @@ namespace Code.Tactical
 
         void SwitchMode()
         {
-            selectedActor.ChangeControlMode();
+            if (selectedActor == null)
+                return;
 
             if (SelectedActorReady)
             {
-                ModeSwitcher.SwitchToTacticalMode();
-            }
-            else
-            {
                 ModeSwitcher.SwitchToActionMode(selectedActor.ManualControl);
                 HideVisualElements();
+                selectedActor.ChangeControlMode();
+            }
+            else if(!selectedActor.enabled)
+            {
+                ModeSwitcher.SwitchToTacticalMode();
+                selectedActor.ChangeControlMode();
+            }
+        }
+
+        public void EndTurn()
+        {
+            foreach (var actor in Squad)
+            {
+                actor.ResetTimeUnits();
             }
         }
     }

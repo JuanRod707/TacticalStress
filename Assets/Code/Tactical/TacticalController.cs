@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Assets.Code.Actors;
 using Code.Acc;
+using Code.Actors;
 using Code.Map;
 using Code.Pathfinding;
 using Code.Tactical.VisualElements;
