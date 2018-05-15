@@ -1,23 +1,15 @@
 ﻿using System.Collections;
+using Code.Acc;
 using Code.BodyParts;
 using UnityEngine;
 
-namespace Code.Acc
+namespace Assets.Code.Weapons
 {
-    public class Rifle : MonoBehaviour
+    public class Rifle : MonoBehaviour, Weapon
     {
-        public float RateOfFire;
-        public float Accuracy;
-        public float AimDistance;
-        public float Range;
-        public float Recoil;
-        public float AimRecovery;
-        public float MinAccuracy;
-        public float PushForce;
-        public float DamagePerRound;
+        public RifleStats Stats;
 
         public Transform MuzzleSpot;
-
         public GameObject ShotLinePf;
         public GameObject HitParticleWall;
         public GameObject HitParticleCharacter;
@@ -36,23 +28,17 @@ namespace Code.Acc
         void Start()
         {
             fireSfx = GetComponent<AudioSource>();
-            currentAccuracy = Accuracy;
+            currentAccuracy = Stats.Accuracy;
         }
 
         void Update()
         {
-            if (!isCycling && currentAccuracy < Accuracy)
+            if (!isCycling && currentAccuracy < Stats.Accuracy)
             {
-                currentAccuracy += AimRecovery;
+                currentAccuracy += Stats.AimRecovery;
             }
 
             AdvCrosshair.UpdateDimension(Inaccuracy);       
-        }
-
-        void DebugStuff()
-        {
-            var aimPoint = GetRandomArcPoint();
-            Debug.DrawRay(MuzzleSpot.position, aimPoint - MuzzleSpot.position);
         }
 
         public void Shoot()
@@ -64,20 +50,20 @@ namespace Code.Acc
                 var ray = new Ray(firePosition, aimPoint - firePosition);
                 RaycastHit hit;
             
-                if (Physics.Raycast(ray, out hit, Range))
+                if (Physics.Raycast(ray, out hit, Stats.Range))
                 {
                     if (hit.rigidbody != null)
                     {
                         var bodyPart = hit.rigidbody.GetComponent<BodyPart>();
                         if (bodyPart != null)
                         {
-                            bodyPart.ReceiveDamage(DamagePerRound);
+                            bodyPart.ReceiveDamage(Stats.DamagePerRound);
                         }
 
                         var pushable = hit.rigidbody.GetComponent<Pushable>();
                         if (pushable != null)
                         {
-                            pushable.Push(hit.point, PushForce);
+                            pushable.Push(hit.point, Stats.PushForce);
                             DisplayHit(hit.point, HitParticleCharacter);
                         }
                     }
@@ -94,9 +80,9 @@ namespace Code.Acc
                     DisplayShot(aimPoint);
                 }
             
-                if (currentAccuracy > 1 && currentAccuracy > MinAccuracy)
+                if (currentAccuracy > 1 && currentAccuracy > Stats.MinAccuracy)
                 {
-                    currentAccuracy -= Recoil;
+                    currentAccuracy -= Stats.Recoil;
                 }
 
                 fireSfx.Play();
@@ -108,7 +94,7 @@ namespace Code.Acc
         IEnumerator CycleBullet()
         {
             isCycling = true;
-            yield return new WaitForSeconds(RateOfFire);
+            yield return new WaitForSeconds(Stats.RateOfFire);
             isCycling = false;
         }
 
@@ -116,11 +102,11 @@ namespace Code.Acc
         {
             var randomPoint = Random.insideUnitSphere * Inaccuracy;
             var cam = Camera.main.transform;
-            var result = (cam.forward * Range) + randomPoint;
+            var result = (cam.forward * Stats.Range) + randomPoint;
 
             var ray = new Ray(cam.position, result);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, Range))
+            if (Physics.Raycast(ray, out hit, Stats.Range))
             {
                 result = hit.point;
             }

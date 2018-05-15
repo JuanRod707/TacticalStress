@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Code.Weapons;
+using UnityEngine;
 
 namespace Code.Acc
 {
