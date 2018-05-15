@@ -2193,15 +2193,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b44e17bf00d44d787b32d69bd41e5a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RateOfFire: 0.15
-  Accuracy: 46
-  AimDistance: 30
-  Range: 100
-  Recoil: 4
-  AimRecovery: 0.5
-  MinAccuracy: 24
-  PushForce: 600
-  DamagePerRound: 6
+  Stats:
+    RateOfFire: 0.2
+    PushForce: 60
+    DamagePerRound: 4
+    AmmoPerMag: 30
+    Accuracy: 52
+    MinAccuracy: 30
+    AimDistance: 10
+    Range: 80
+    Recoil: 6
+    AimRecovery: 0.8
   MuzzleSpot: {fileID: 4839103404890498}
   ShotLinePf: {fileID: 1836030632982652, guid: bd97c00cbe03cf546a2e6be6bf10def7, type: 2}
   HitParticleWall: {fileID: 1681318816509596, guid: 691a4e79965175444a157b35aaa3a555,
