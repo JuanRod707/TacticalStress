@@ -1,0 +1,23 @@
+# Made using Asset Forge (1.3)
+
+:models
+Western/column[(-0.75, 0.7, -0.05);(90.0, 0.0, 0.0);(1.7, 0.7, 1.5);column_201;black]
+Aircraft/detail_windowLarge[(-5.96E-08, -0.6, -2.2);(0.0, 90.0, 0.0);(6.0, 1.0, 0.8);detail_windowLarge_202;darkStone+black]
+Castles/wall_borderCornerRound%[(0.05, -0.1, 0.4);(90.0, 270.0, 0.0);(0.5, 0.4, 0.3);wall_borderCornerRound%_34;black]
+
+:materials
+_defaultMat[RGBA(1.000, 1.000, 1.000, 1.000);]
+blueSteel[RGBA(0.365, 0.630, 0.042, 1.000);]
+black[RGBA(0.050, 0.050, 0.050, 1.000);]
+hilt[RGBA(1.000, 0.683, 0.059, 1.000);]
+handle[RGBA(0.180, 0.108, 0.000, 1.000);]
+woodDark[RGBA(0.641, 0.422, 0.293, 1.000);]
+glass[RGBA(0.298, 0.314, 0.365, 1.000);]
+darkStone[RGBA(0.280, 0.280, 0.280, 1.000);]
+wood[RGBA(0.882, 0.579, 0.402, 1.000);]
+customMaterial9[RGBA(0.570, 1.000, 0.849, 1.000);]
+lightStone[RGBA(0.812, 0.808, 0.855, 1.000);]
+
+:textures
+
+:extra

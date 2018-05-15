@@ -1,0 +1,27 @@
+# Made using Asset Forge (1.3)
+
+:models
+Swords/hilt_handle_guard[(0, -0.1, 0.15);(0.0, 90.0, 315.0);(1.1, 1.0, 1.0);hilt_handle_guard_196;glass+black]
+Castles/detail_chimneyTop[(0, 0.3, 0.2);(0.0, 90.0, 180.0);(2.2, 0.8, 1.0);detail_chimneyTop_204;darkStone]
+Castles/detail_chimneyTop[(-0.05, 0.4, 0.1);(90.0, 270.0, 0.0);(2.3, 0.6, 0.5);detail_chimneyTop_208;glass]
+Vehicles/detail_roofDoubleRails%[(1.12E-08, 0.5, -0.6);(0.0, 0.0, 0.0);(0.2, 1.5, 1.0);detail_roofDoubleRails%_0;tire]
+Aircraft/engine_barrelTop[(0, 0.2, -0.8);(0.0, 0.0, 0.0);(0.8, 0.8, 1.4);engine_barrelTop_1;darkStone+darkStone+black]
+Aircraft/engine_barrelTop[(0, 0.2, -0.9);(0.0, 0.0, 180.0);(0.8, 0.3, 1.6);engine_barrelTop_2;darkStone+darkStone+black]
+Vehicles/detail_roofDoubleRails%[(0.1, 0.3, -1.25);(0.0, 0.0, 270.0);(0.2, 1.5, 0.5);detail_roofDoubleRails%_3;tire]
+
+:materials
+hilt[RGBA(1.000, 0.683, 0.059, 1.000);]
+handle[RGBA(0.180, 0.108, 0.000, 1.000);]
+darkStone[RGBA(0.280, 0.280, 0.280, 1.000);]
+tire[RGBA(0.298, 0.314, 0.365, 1.000);]
+_defaultMat[RGBA(1.000, 1.000, 1.000, 1.000);]
+blueSteel[RGBA(0.365, 0.630, 0.042, 1.000);]
+black[RGBA(0.050, 0.050, 0.050, 1.000);]
+woodDark[RGBA(0.641, 0.422, 0.293, 1.000);]
+glass[RGBA(0.298, 0.314, 0.365, 1.000);]
+wood[RGBA(0.882, 0.579, 0.402, 1.000);]
+customMaterial9[RGBA(0.570, 1.000, 0.849, 1.000);]
+
+:textures
+
+:extra
