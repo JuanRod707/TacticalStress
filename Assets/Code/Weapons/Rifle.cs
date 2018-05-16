@@ -1,6 +1,6 @@
 ﻿using System.Collections;
-using Code.Acc;
-using Code.BodyParts;
+using Assets.Code.Action;
+using Assets.Code.BodyParts;
 using UnityEngine;
 
 namespace Assets.Code.Weapons
