@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Code.Helpers;
+using Assets.Code.Helpers;
 
-namespace Code.Map
+namespace Assets.Code.Map
 {
     public class Map
     {

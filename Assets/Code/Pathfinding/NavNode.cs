@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Code.Map;
+using Assets.Code.Map;
 
-namespace Code.Pathfinding
+namespace Assets.Code.Pathfinding
 {
     public class NavNode
     {

@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Code.Map;
-using UnityEngine;
-using Compass = Code.Map.Compass;
+using Assets.Code.Map;
+using Compass = Assets.Code.Map.Compass;
 
-namespace Code.Helpers
+namespace Assets.Code.Helpers
 {
     public class GridHelper
     {

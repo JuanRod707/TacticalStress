@@ -1,7 +1,6 @@
-﻿using UnityEngine;
-using Random = System.Random;
+﻿using Random = System.Random;
 
-namespace Code.Helpers
+namespace Assets.Code.Helpers
 {
     public static class RandomService
     {

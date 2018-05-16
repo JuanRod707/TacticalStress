@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Code.Cameras
+namespace Assets.Code.Cameras
 {
     public class DualPointCamera : MonoBehaviour
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Code.BodyParts
+namespace Assets.Code.BodyParts
 {
     public class Grapple : MonoBehaviour, ScriptableMotion
     {

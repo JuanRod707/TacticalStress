@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Code.Acc
+namespace Assets.Code.Action
 {
     public class AdvancedCrosshair : MonoBehaviour
     {

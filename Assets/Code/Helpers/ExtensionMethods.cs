@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace Code.Helpers
+namespace Assets.Code.Helpers
 {
     internal static class ExtensionMethods
     {

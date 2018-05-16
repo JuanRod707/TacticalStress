@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Code.Map
+namespace Assets.Code.Map
 {
     [Serializable]
     public struct Coordinate

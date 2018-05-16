@@ -1,4 +1,4 @@
-﻿namespace Code.BodyParts
+﻿namespace Assets.Code.BodyParts
 {
     interface ScriptableMotion
     {

@@ -1,7 +1,7 @@
-﻿using Code.Pathfinding;
+﻿using Assets.Code.Pathfinding;
 using UnityEngine;
 
-namespace Code.Map
+namespace Assets.Code.Map
 {
     public class Cell : MonoBehaviour
     {

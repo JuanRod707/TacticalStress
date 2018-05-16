@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Code.Sandbox
+namespace Assets.Code.Sandbox
 {
     public class ForceMove : MonoBehaviour
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Code.Helpers
+namespace Assets.Code.Helpers
 {
     public class PhysicalHit
     {

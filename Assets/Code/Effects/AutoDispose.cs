@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Code.Effects
+namespace Assets.Code.Effects
 {
     public class AutoDispose : MonoBehaviour
     {

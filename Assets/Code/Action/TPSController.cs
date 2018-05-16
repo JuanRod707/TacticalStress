@@ -1,7 +1,7 @@
 ﻿using Assets.Code.Weapons;
 using UnityEngine;
 
-namespace Code.Acc
+namespace Assets.Code.Action
 {
     public class TPSController : MonoBehaviour
     {

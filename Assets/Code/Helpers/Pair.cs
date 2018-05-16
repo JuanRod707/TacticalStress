@@ -1,4 +1,4 @@
-﻿namespace Code.Helpers
+﻿namespace Assets.Code.Helpers
 {
     public struct Pair<T>
     {

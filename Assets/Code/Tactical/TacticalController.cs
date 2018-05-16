@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Code.Acc;
-using Code.Actors;
-using Code.Map;
-using Code.Pathfinding;
-using Code.Tactical.VisualElements;
+using Assets.Code.Action;
+using Assets.Code.Actors;
+using Assets.Code.Map;
+using Assets.Code.Pathfinding;
+using Assets.Code.Tactical.VisualElements;
 using UnityEngine;
 
-namespace Code.Tactical
+namespace Assets.Code.Tactical
 {
     public class TacticalController : MonoBehaviour
     {

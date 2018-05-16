@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace Code.Pathfinding
+namespace Assets.Code.Pathfinding
 {
     public class Pathfinder : MonoBehaviour {
 
