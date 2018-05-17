@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using Assets.Code.Action;
 using Assets.Code.BodyParts;
+using Assets.Code.Enums;
+using Assets.Code.Generators.Weapons;
 using UnityEngine;
 
 namespace Assets.Code.Weapons
@@ -27,6 +29,7 @@ namespace Assets.Code.Weapons
 
         void Start()
         {
+            Stats = WeaponGenerator.GenerateNewRifle(ItemQuality.Common);
             fireSfx = GetComponent<AudioSource>();
             currentAccuracy = Stats.Accuracy;
         }

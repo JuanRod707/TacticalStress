@@ -6,7 +6,6 @@ using Assets.Code.Enums;
 
 namespace Assets.Code.Weapons
 {
-    [Serializable]
     public class RifleStats : WeaponStats
     {
         public ItemQuality Quality;
