@@ -29,9 +29,7 @@ namespace Assets.Code.Weapons
 
         void Start()
         {
-            Stats = WeaponGenerator.GenerateNewRifle(ItemQuality.Common);
             fireSfx = GetComponent<AudioSource>();
-            currentAccuracy = Stats.Accuracy;
         }
 
         void Update()
@@ -92,6 +90,17 @@ namespace Assets.Code.Weapons
                 DisplayMuzzle();
                 StartCoroutine(CycleBullet());
             }
+        }
+
+        public void LoadStats(RifleStats stats)
+        {
+            Stats = stats;
+            currentAccuracy = Stats.Accuracy;
+        }
+
+        public void LoadParts(Transform body, Transform barrel, Transform stock, Transform mag)
+        {
+            body.GetComponent<RifleAssembly>().Assemble(barrel, stock, mag);
         }
 
         IEnumerator CycleBullet()
