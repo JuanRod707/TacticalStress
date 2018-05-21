@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4539833387839366}
   - component: {fileID: 114384728333317178}
+  - component: {fileID: 114293737876145962}
   m_Layer: 0
   m_Name: RifleBodyC
   m_TagString: Untagged
@@ -144,6 +145,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1786677644780916}
   m_Mesh: {fileID: 4300000, guid: 47a3e21e9dec19445bc3ee62dc68e535, type: 3}
+--- !u!114 &114293737876145962
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1268759832452490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28db2864524bcc44f99463973574077f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AssemblyPartId: BodyC
 --- !u!114 &114384728333317178
 MonoBehaviour:
   m_ObjectHideFlags: 1

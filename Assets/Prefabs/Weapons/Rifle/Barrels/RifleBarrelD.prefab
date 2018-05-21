@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4716350971385598}
   - component: {fileID: 114019471729118676}
+  - component: {fileID: 114974305182965820}
   m_Layer: 0
   m_Name: RifleBarrelD
   m_TagString: Untagged
@@ -185,6 +186,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MuzzleEffect: {fileID: 198236965655685390}
+--- !u!114 &114974305182965820
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1064436952946546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28db2864524bcc44f99463973574077f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AssemblyPartId: BarrelD
 --- !u!198 &198236965655685390
 ParticleSystem:
   m_ObjectHideFlags: 1

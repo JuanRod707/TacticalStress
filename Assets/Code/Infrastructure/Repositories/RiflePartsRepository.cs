@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Assets.Code.Weapons;
 using Code.Helpers;
 using UnityEngine;
 
@@ -7,77 +8,77 @@ namespace Code.Infrastructure.Repositories
 {
     public class RiflePartsRepository : MonoBehaviour
     {
-        public GameObject[] Bodies;
-        public GameObject[] Mags;
-        public GameObject[] Stocks;
-        public GameObject[] Barrels;
+        public AssemblyPart[] Bodies;
+        public AssemblyPart[] Mags;
+        public AssemblyPart[] Stocks;
+        public AssemblyPart[] Barrels;
 
-        public GameObject GetBody(int itemId)
+        public GameObject GetBody(string itemId)
         {
             try
             {
-                return Bodies[itemId];
+                return Bodies.First(x => x.AssemblyPartId.Equals(itemId)).gameObject;
             }
             catch (IndexOutOfRangeException)
             {
-                return Bodies.First();
+                return Bodies.First().gameObject;
             }
         }
 
-        public GameObject GetMag(int itemId)
+        public GameObject GetMag(string itemId)
         {
             try
             {
-                return Mags[itemId];
+                return Mags.First(x => x.AssemblyPartId.Equals(itemId)).gameObject;
             }
             catch (IndexOutOfRangeException)
             {
-                return Mags.First();
+                return Mags.First().gameObject;
             }
         }
 
-        public GameObject GetStock(int itemId)
+        public GameObject GetStock(string itemId)
         {
             try
             {
-                return Stocks[itemId];
+                return Stocks.First(x => x.AssemblyPartId.Equals(itemId)).gameObject;
             }
             catch (IndexOutOfRangeException)
             {
-                return Stocks.First();
+                return Stocks.First().gameObject;
             }
         }
 
-        public GameObject GetBarrel(int itemId)
+        public GameObject GetBarrel(string itemId)
         {
             try
             {
-                return Barrels[itemId];
+                return Barrels.First(x => x.AssemblyPartId.Equals(itemId)).gameObject;
             }
             catch (IndexOutOfRangeException)
             {
-                return Barrels.First();
+                return Barrels.First().gameObject;
             }
         }
 
         public GameObject GetRandomBody()
         {
-            return Bodies.PickOne();
+            return Bodies.PickOne().gameObject;
         }
 
         public GameObject GetRandomMag()
         {
-            return Mags.PickOne();
+            return Mags.PickOne().gameObject;
         }
 
         public GameObject GetRandomStock()
         {
-            return Stocks.PickOne();
+            return Stocks.PickOne().gameObject;
         }
 
         public GameObject GetRandomBarrel()
         {
-            return Barrels.PickOne();
+            return Barrels.PickOne().gameObject;
         }
     }
 }

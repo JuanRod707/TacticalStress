@@ -5,9 +5,9 @@ namespace Code.Weapons
     [Serializable]
     public class RifleAssemblyData
     {
-        public int BodyId;
-        public int StockId;
-        public int BarrelId;
-        public int MagId;
+        public string BodyId;
+        public string StockId;
+        public string BarrelId;
+        public string MagId;
     }
 }

@@ -35,6 +35,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4941570235706556}
   - component: {fileID: 114271253817738368}
+  - component: {fileID: 114883910837616252}
   m_Layer: 0
   m_Name: RifleBarrelC
   m_TagString: Untagged
@@ -123,7 +124,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1496782903888774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.25, z: 1.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4455298898801818}
@@ -185,6 +186,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MuzzleEffect: {fileID: 198792173062374154}
+--- !u!114 &114883910837616252
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1496782903888774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28db2864524bcc44f99463973574077f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AssemblyPartId: BarrelC
 --- !u!198 &198792173062374154
 ParticleSystem:
   m_ObjectHideFlags: 1

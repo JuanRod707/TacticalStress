@@ -38,10 +38,10 @@ namespace Code.Sandbox
             }
             else
             {
-                var body = Repos.RifleRepo.GetBody(Session.GeneratedRifleAssembly.BodyId);
-                var stock = Repos.RifleRepo.GetStock(Session.GeneratedRifleAssembly.StockId);
-                var mag = Repos.RifleRepo.GetMag(Session.GeneratedRifleAssembly.MagId);
-                var barrel = Repos.RifleRepo.GetBarrel(Session.GeneratedRifleAssembly.BarrelId);
+                var body = Instantiate(Repos.RifleRepo.GetBody(Session.GeneratedRifleAssembly.BodyId), rifle.transform);
+                var stock = Instantiate(Repos.RifleRepo.GetStock(Session.GeneratedRifleAssembly.StockId), rifle.transform);
+                var mag = Instantiate(Repos.RifleRepo.GetMag(Session.GeneratedRifleAssembly.MagId), rifle.transform);
+                var barrel = Instantiate(Repos.RifleRepo.GetBarrel(Session.GeneratedRifleAssembly.BarrelId), rifle.transform);
 
                 rifle.Initialize(Session.GeneratedRifleStats, body.transform, barrel.transform,
                     stock.transform, mag.transform);

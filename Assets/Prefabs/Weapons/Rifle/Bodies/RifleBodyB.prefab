@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4014617770279610}
   - component: {fileID: 114122378642004578}
+  - component: {fileID: 114937753146425356}
   m_Layer: 0
   m_Name: RifleBodyB
   m_TagString: Untagged
@@ -159,3 +160,15 @@ MonoBehaviour:
   StockSpot: {x: 0, y: 0.4, z: 0.1}
   BarrelSpot: {x: 0, y: 0.4, z: 1.45}
   MagSpot: {x: 0, y: 0, z: 0.68}
+--- !u!114 &114937753146425356
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1221696704945888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28db2864524bcc44f99463973574077f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AssemblyPartId: BodyB

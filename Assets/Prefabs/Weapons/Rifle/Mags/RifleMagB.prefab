@@ -51,6 +51,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4999226659760750}
+  - component: {fileID: 114974509396803588}
   m_Layer: 0
   m_Name: RifleMagB
   m_TagString: Untagged
@@ -142,3 +143,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1552979708667726}
   m_Mesh: {fileID: 4300000, guid: e5866476f2f82ad42af9c516e2066b47, type: 3}
+--- !u!114 &114974509396803588
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1677938654710626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28db2864524bcc44f99463973574077f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AssemblyPartId: MagB

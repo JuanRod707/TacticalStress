@@ -1,4 +1,5 @@
-﻿using Code.Enums;
+﻿using Assets.Code.Weapons;
+using Code.Enums;
 using Code.Generators.Weapons;
 using Code.Infrastructure.Persistance;
 using Code.Infrastructure.Repositories;
@@ -38,7 +39,13 @@ namespace Code.Sandbox
             Panel.FillRifleStats(rifle.Stats);
 
             currentRifleStats = rifle.Stats;
-            currentRifleData = new RifleAssemblyData();
+            currentRifleData = new RifleAssemblyData
+            {
+                BarrelId = barrel.GetComponent<AssemblyPart>().AssemblyPartId,
+                BodyId = body.GetComponent<AssemblyPart>().AssemblyPartId,
+                StockId = stock.GetComponent<AssemblyPart>().AssemblyPartId,
+                MagId = mag.GetComponent<AssemblyPart>().AssemblyPartId,
+            };
         }
 
         public void GenerateRifle()
