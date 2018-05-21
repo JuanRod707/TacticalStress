@@ -1,4 +1,4 @@
-﻿namespace Assets.Code.Weapons
+﻿namespace Code.Weapons
 {
     public interface WeaponStats
     {

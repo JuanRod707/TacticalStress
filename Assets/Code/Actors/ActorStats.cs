@@ -1,7 +1,7 @@
-﻿using Assets.Code.UI;
+﻿using Code.UI;
 using UnityEngine;
 
-namespace Assets.Code.Actors
+namespace Code.Actors
 {
     public class ActorStats : MonoBehaviour
     {

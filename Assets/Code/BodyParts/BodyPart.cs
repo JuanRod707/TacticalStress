@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Code.BodyParts
+namespace Code.BodyParts
 {
     public class BodyPart : MonoBehaviour
     {

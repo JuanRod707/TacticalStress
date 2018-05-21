@@ -1,18 +1,23 @@
-﻿using Assets.Code.Enums;
-using Assets.Code.Generators.Weapons;
-using Assets.Code.Helpers;
-using Assets.Code.Repositories;
-using Assets.Code.UI;
-using Assets.Code.Weapons;
+﻿using Code.Enums;
+using Code.Generators.Weapons;
+using Code.Infrastructure.Persistance;
+using Code.Infrastructure.Repositories;
+using Code.UI;
+using Code.Weapons;
+using UnityEditor.Experimental.Build.AssetBundle;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-namespace Assets.Code.Sandbox
+namespace Code.Sandbox
 {
     public class RifleSpawner : MonoBehaviour
     {
         public Transform Platform;
         public GameObject RiflePrefab;
         public RiflePanel Panel;
+
+        private RifleStats currentRifleStats;
+        private RifleAssemblyData currentRifleData;
 
         void Start()
         {
@@ -28,16 +33,25 @@ namespace Assets.Code.Sandbox
             var mag = Instantiate(Repos.RifleRepo.GetRandomMag());
             var barrel = Instantiate(Repos.RifleRepo.GetRandomBarrel());
 
-            rifle.LoadParts(body.transform, barrel.transform, stock.transform, mag.transform);
-            rifle.LoadStats(WeaponGenerator.GenerateNewRifle(ItemQuality.Common));
+            rifle.Initialize(WeaponGenerator.GenerateNewRifle(ItemQuality.Common), body.transform, barrel.transform, stock.transform, mag.transform);
 
             Panel.FillRifleStats(rifle.Stats);
+
+            currentRifleStats = rifle.Stats;
+            currentRifleData = new RifleAssemblyData();
         }
 
         public void GenerateRifle()
         {
             Destroy(Platform.GetComponentInChildren<Rifle>().gameObject);
             GenerateNewRifle();
+        }
+
+        public void TestRifle()
+        {
+            Session.GeneratedRifleAssembly = currentRifleData;
+            Session.GeneratedRifleStats = currentRifleStats;
+            SceneManager.LoadScene("ShootingRange");
         }
     }
 }

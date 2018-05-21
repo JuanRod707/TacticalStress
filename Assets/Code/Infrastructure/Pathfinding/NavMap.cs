@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Assets.Code.Helpers;
-using Assets.Code.Map;
+using Code.Helpers;
+using Code.Infrastructure.Map;
 using UnityEngine;
 
-namespace Assets.Code.Pathfinding
+namespace Code.Infrastructure.Pathfinding
 {
     public class NavMap
     {

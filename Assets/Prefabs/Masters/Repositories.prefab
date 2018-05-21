@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1635447038377592}
+  m_IsPrefabParent: 1
+--- !u!1 &1635447038377592
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4518632649945546}
+  - component: {fileID: 114438898519711886}
+  - component: {fileID: 114309090801022744}
+  m_Layer: 0
+  m_Name: Repositories
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4518632649945546
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1635447038377592}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114309090801022744
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1635447038377592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6237ecfd18974fa88fa1f4dcc1564973, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShotLine: {fileID: 1836030632982652, guid: bd97c00cbe03cf546a2e6be6bf10def7, type: 2}
+  ShotHit: {fileID: 1193714161867616, guid: cb5ae6fe9511fad42ad268f40c61586c, type: 2}
+  BulletHole: {fileID: 1562766468098420, guid: 42ce5def62bcd1b459a87c3f687e304f, type: 2}
+--- !u!114 &114438898519711886
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1635447038377592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92fba4ee3136c184b91c01815e4ed255, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bodies:
+  - {fileID: 1144187000631430, guid: 8e0f0b31fed7d1047ad9f899cba7a0de, type: 2}
+  - {fileID: 1221696704945888, guid: dab0be2bcf6acb34f8bf1bbc46dad9ae, type: 2}
+  - {fileID: 1268759832452490, guid: 3e8d1660a6f95c645a93ebcb6a279d8c, type: 2}
+  Mags:
+  - {fileID: 1758532734672820, guid: a68f6f3816bb93d4b93efb135d9ab9c5, type: 2}
+  - {fileID: 1677938654710626, guid: 56b8cd3aae627e04d9b8f75e5fcecc17, type: 2}
+  - {fileID: 1366105453740606, guid: 44129ec623b28e742a0b9cd2d94f5889, type: 2}
+  - {fileID: 1612276457672094, guid: dbe167ab5836f7b4c88d95c659871c98, type: 2}
+  Stocks:
+  - {fileID: 1484327136233124, guid: 5838ff07412ac164594ab35c15044cec, type: 2}
+  - {fileID: 1227618827916916, guid: 30d2954e7779500498945cedaa60a701, type: 2}
+  - {fileID: 1101267482282448, guid: 3157e47cbaaf5a04490cd3df49fa1ef9, type: 2}
+  - {fileID: 1351570662364368, guid: 28849582b718dfe4ebbe4cb81275fcba, type: 2}
+  Barrels:
+  - {fileID: 1392342556872644, guid: 94e6f01e8560c8a44b04ff7168202dc9, type: 2}
+  - {fileID: 1442306020792100, guid: f3f60cfbee65c314ab6514efb6d41335, type: 2}
+  - {fileID: 1496782903888774, guid: 01f3cfc5b9e8bdf4981ddea247408601, type: 2}
+  - {fileID: 1064436952946546, guid: aecb9cfa3eb17434283fa7529956ca22, type: 2}
+  - {fileID: 1306017415165940, guid: ca304455dcac4c14eae9b5169fa89764, type: 2}

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Assets.Code.Map;
-using Compass = Assets.Code.Map.Compass;
+using Code.Infrastructure.Map;
+using Compass = Code.Infrastructure.Map.Compass;
 
-namespace Assets.Code.Helpers
+namespace Code.Helpers
 {
     public class GridHelper
     {

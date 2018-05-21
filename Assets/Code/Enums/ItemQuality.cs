@@ -1,4 +1,4 @@
-﻿namespace Assets.Code.Enums
+﻿namespace Code.Enums
 {
     public enum ItemQuality
     {

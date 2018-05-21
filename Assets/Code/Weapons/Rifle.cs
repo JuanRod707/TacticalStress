@@ -1,45 +1,42 @@
 ﻿using System.Collections;
-using Assets.Code.Action;
-using Assets.Code.BodyParts;
-using Assets.Code.Enums;
-using Assets.Code.Generators.Weapons;
+using Code.BodyParts;
+using Code.Infrastructure.Repositories;
 using UnityEngine;
 
-namespace Assets.Code.Weapons
+namespace Code.Weapons
 {
     public class Rifle : MonoBehaviour, Weapon
     {
         public RifleStats Stats;
-
-        public Transform MuzzleSpot;
-        public GameObject ShotLinePf;
-        public GameObject HitParticleWall;
-        public GameObject HitParticleCharacter;
-        public ParticleSystem MuzzleEffect;
-        public AdvancedCrosshair AdvCrosshair;
-
+        
+        GameObject shotLine;
+        GameObject hitParticle;
+        GameObject bulletHole;
+        ParticleSystem muzzleEffect;
         private AudioSource fireSfx;
         private bool isCycling;
         float currentAccuracy;
 
-        private float Inaccuracy
+        public float Inaccuracy
         {
             get { return 1 - (100f / currentAccuracy); }
         }
 
-        void Start()
+        public void Initialize(RifleStats stats, Transform body, Transform barrel, Transform stock, Transform mag)
         {
-            fireSfx = GetComponent<AudioSource>();
-        }
-
-        void Update()
-        {
-            if (!isCycling && currentAccuracy < Stats.Accuracy)
+            if (Repos.ParticleRepo != null)
             {
-                currentAccuracy += Stats.AimRecovery;
+                shotLine = Repos.ParticleRepo.ShotLine;
+                hitParticle = Repos.ParticleRepo.ShotHit;
+                bulletHole = Repos.ParticleRepo.BulletHole;
             }
 
-            AdvCrosshair.UpdateDimension(Inaccuracy);       
+            Stats = stats;
+            currentAccuracy = Stats.Accuracy;
+            body.GetComponent<RifleAssembly>().Assemble(barrel, stock, mag);
+            muzzleEffect = barrel.GetComponent<BarrelAssembly>().MuzzleEffect;
+
+            fireSfx = GetComponent<AudioSource>();
         }
 
         public void Shoot()
@@ -47,7 +44,7 @@ namespace Assets.Code.Weapons
             if (!isCycling)
             {
                 var aimPoint = GetRandomArcPoint();
-                var firePosition = MuzzleSpot.position;
+                var firePosition = muzzleEffect.transform.position;
                 var ray = new Ray(firePosition, aimPoint - firePosition);
                 RaycastHit hit;
             
@@ -65,15 +62,14 @@ namespace Assets.Code.Weapons
                         if (pushable != null)
                         {
                             pushable.Push(hit.point, Stats.PushForce);
-                            DisplayHit(hit.point, HitParticleCharacter);
                         }
                     }
                     else
                     {
-                        DisplayHit(hit.point, HitParticleWall);
+                        DisplayHit(hit.point, bulletHole);
                     }
 
-
+                    DisplayHit(hit.point, hitParticle);
                     DisplayShot(hit.point);
                 }
                 else
@@ -92,15 +88,12 @@ namespace Assets.Code.Weapons
             }
         }
 
-        public void LoadStats(RifleStats stats)
+        void Update()
         {
-            Stats = stats;
-            currentAccuracy = Stats.Accuracy;
-        }
-
-        public void LoadParts(Transform body, Transform barrel, Transform stock, Transform mag)
-        {
-            body.GetComponent<RifleAssembly>().Assemble(barrel, stock, mag);
+            if (!isCycling && currentAccuracy < Stats.Accuracy)
+            {
+                currentAccuracy += Stats.AimRecovery;
+            }
         }
 
         IEnumerator CycleBullet()
@@ -128,8 +121,8 @@ namespace Assets.Code.Weapons
 
         void DisplayShot(Vector3 hitPoint)
         {
-            var shotLine = Instantiate(ShotLinePf).GetComponent<LineRenderer>();
-            shotLine.SetPositions(new [] { MuzzleSpot.position, hitPoint });
+            var shotLine = Instantiate(this.shotLine).GetComponent<LineRenderer>();
+            shotLine.SetPositions(new [] { muzzleEffect.transform.position, hitPoint });
         }
 
         void DisplayHit(Vector3 hitPoint, GameObject hitParticle)
@@ -139,7 +132,7 @@ namespace Assets.Code.Weapons
 
         void DisplayMuzzle()
         {
-            MuzzleEffect.Emit(1);
+            muzzleEffect.Emit(1);
         }
     }
 }

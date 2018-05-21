@@ -1,8 +1,8 @@
-﻿using Assets.Code.Action;
-using Assets.Code.Cameras;
+﻿using Code.Action;
+using Code.Cameras;
 using UnityEngine;
 
-namespace Assets.Code.Directors
+namespace Code.Directors
 {
     public class ModeSwitcher : MonoBehaviour
     {

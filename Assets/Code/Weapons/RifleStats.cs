@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Assets.Code.Enums;
+﻿using Code.Enums;
 
-namespace Assets.Code.Weapons
+namespace Code.Weapons
 {
     public class RifleStats : WeaponStats
     {

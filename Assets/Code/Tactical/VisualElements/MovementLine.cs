@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.Code.Tactical.VisualElements
+namespace Code.Tactical.VisualElements
 {
     public class MovementLine : MonoBehaviour
     {

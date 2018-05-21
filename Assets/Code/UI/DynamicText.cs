@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Code.UI
+namespace Code.UI
 {
     public class DynamicText : MonoBehaviour
     {

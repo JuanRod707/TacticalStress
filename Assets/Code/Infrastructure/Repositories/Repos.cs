@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Code.Repositories
+namespace Code.Infrastructure.Repositories
 {
     public static class Repos
     {
@@ -12,6 +12,11 @@ namespace Assets.Code.Repositories
         public static RiflePartsRepository RifleRepo
         {
             get { return Repositories.GetComponent<RiflePartsRepository>(); }
+        }
+
+        public static ParticleRepository ParticleRepo
+        {
+            get { return Repositories.GetComponent<ParticleRepository>(); }
         }
     }
 }

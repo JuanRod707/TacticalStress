@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Code.UI
+namespace Code.UI
 {
     public class FaceView : MonoBehaviour
     {

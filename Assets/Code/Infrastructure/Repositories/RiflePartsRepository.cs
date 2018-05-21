@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Assets.Code.Helpers;
+using Code.Helpers;
 using UnityEngine;
 
-namespace Assets.Code.Repositories
+namespace Code.Infrastructure.Repositories
 {
     public class RiflePartsRepository : MonoBehaviour
     {

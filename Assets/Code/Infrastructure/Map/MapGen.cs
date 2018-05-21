@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Assets.Code.Pathfinding;
+using Code.Infrastructure.Pathfinding;
 using UnityEngine;
 
-namespace Assets.Code.Map
+namespace Code.Infrastructure.Map
 {
     public class MapGen : MonoBehaviour
     {

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Assets.Code.UI;
+using Code.UI;
 using UnityEngine;
 
-namespace Assets.Code.Tactical.VisualElements
+namespace Code.Tactical.VisualElements
 {
     public class MovementMarker : MonoBehaviour
     {

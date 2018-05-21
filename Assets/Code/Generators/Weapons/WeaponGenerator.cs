@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Assets.Code.Enums;
-using Assets.Code.Helpers;
-using Assets.Code.Weapons;
+﻿using Code.Enums;
+using Code.Helpers;
+using Code.Weapons;
 
-namespace Assets.Code.Generators.Weapons
+namespace Code.Generators.Weapons
 {
     public class WeaponGenerator
     {

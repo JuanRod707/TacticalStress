@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Assets.Code.Map;
+using Code.Infrastructure.Map;
 using UnityEngine;
 
-namespace Assets.Code.Helpers
+namespace Code.Helpers
 {
     internal class MatrixTools<T>
     {

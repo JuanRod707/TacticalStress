@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Code.Weapons;
+using UnityEngine;
 
-namespace Assets.Code.Action
+namespace Code.UI
 {
     public class AdvancedCrosshair : MonoBehaviour
     {
@@ -8,6 +9,7 @@ namespace Assets.Code.Action
         public float MaxDimension;
         public float CrossGrowthFactor;
 
+        private Weapon attachedWeapon;
         private RectTransform myRect;
 
         void Start()
@@ -15,11 +17,24 @@ namespace Assets.Code.Action
             myRect = GetComponent<RectTransform>();
         }
 
+        void Update()
+        {
+            if (attachedWeapon != null)
+            {
+                UpdateDimension(attachedWeapon.Inaccuracy);
+            }
+        }
+
         public void UpdateDimension(float inaccuracy)
         {
             var dim = (-inaccuracy * CrossGrowthFactor) + MinDimension;
 
             myRect.sizeDelta = new Vector2(dim, dim);
+        }
+
+        public void AttachWeapon(Weapon weapon)
+        {
+            attachedWeapon = weapon;
         }
     }
 }

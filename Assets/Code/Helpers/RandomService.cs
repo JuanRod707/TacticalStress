@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Code.Helpers
+namespace Code.Helpers
 {
     public static class RandomService
     {

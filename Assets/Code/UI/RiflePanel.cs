@@ -1,7 +1,7 @@
-﻿using Assets.Code.Weapons;
+﻿using Code.Weapons;
 using UnityEngine;
 
-namespace Assets.Code.UI
+namespace Code.UI
 {
     public class RiflePanel : MonoBehaviour
     {

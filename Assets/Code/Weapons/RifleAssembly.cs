@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Code.Weapons
+namespace Code.Weapons
 {
     public class RifleAssembly : MonoBehaviour
     {
@@ -21,6 +21,10 @@ namespace Assets.Code.Weapons
             barrel.localRotation = Quaternion.identity;
             stock.localRotation = Quaternion.identity;
             mag.localRotation = Quaternion.identity;
+
+            barrel.localScale = Vector3.one;
+            stock.localScale = Vector3.one;
+            mag.localScale = Vector3.one;
         }
     }
 }

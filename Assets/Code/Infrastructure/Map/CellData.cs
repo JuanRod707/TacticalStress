@@ -1,4 +1,4 @@
-﻿namespace Assets.Code.Map
+﻿namespace Code.Infrastructure.Map
 {
     public class CellData
     {

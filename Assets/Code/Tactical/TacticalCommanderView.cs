@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Assets.Code.Actors;
-using Assets.Code.Directors;
-using Assets.Code.Helpers;
-using Assets.Code.Map;
-using Assets.Code.Pathfinding;
-using Assets.Code.Tactical.VisualElements;
+using Code.Actors;
+using Code.Directors;
+using Code.Helpers;
+using Code.Infrastructure.Map;
+using Code.Infrastructure.Pathfinding;
+using Code.Tactical.VisualElements;
 using UnityEngine;
 
-namespace Assets.Code.Tactical
+namespace Code.Tactical
 {
     public class TacticalCommanderView : MonoBehaviour
     {
