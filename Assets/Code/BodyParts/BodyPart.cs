@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Code.Infrastructure.Repositories;
+using Code.UI;
+using UnityEngine;
 
 namespace Code.BodyParts
 {
@@ -27,6 +29,7 @@ namespace Code.BodyParts
         {
             body.ReceiveDamage(damage * DamageFactor);
             currentHitPoints -= damage;
+            DisplayDamage(damage * DamageFactor);
 
             if (IsDead)
             {
@@ -38,6 +41,12 @@ namespace Code.BodyParts
         {
             body.KillBody();
             Destroy(joint);
+        }
+
+        void DisplayDamage(float damage)
+        {
+            var number = Instantiate(Repos.ParticleRepo.DamageNumber, transform.position, Quaternion.identity).GetComponent<DynamicText>();
+            number.SetDynamicText(damage.ToString("0.00"));
         }
     }
 }

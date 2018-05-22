@@ -1,6 +1,10 @@
-﻿using Assets.Code.Weapons;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Assets.Code.Weapons;
 using Code.Enums;
 using Code.Generators.Weapons;
+using Code.Helpers;
 using Code.Infrastructure.Persistance;
 using Code.Infrastructure.Repositories;
 using Code.UI;
@@ -8,6 +12,7 @@ using Code.Weapons;
 using UnityEditor.Experimental.Build.AssetBundle;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Vuforia;
 
 namespace Code.Sandbox
 {
@@ -34,7 +39,9 @@ namespace Code.Sandbox
             var mag = Instantiate(Repos.RifleRepo.GetRandomMag());
             var barrel = Instantiate(Repos.RifleRepo.GetRandomBarrel());
 
-            rifle.Initialize(WeaponGenerator.GenerateNewRifle(ItemQuality.Common), body.transform, barrel.transform, stock.transform, mag.transform);
+            var quality = Enum.GetValues(typeof(ItemQuality)).Cast<ItemQuality>().PickOne();
+
+            rifle.Initialize(WeaponGenerator.GenerateNewRifle(quality), body.transform, barrel.transform, stock.transform, mag.transform);
 
             Panel.FillRifleStats(rifle.Stats);
 

@@ -8,7 +8,7 @@ namespace Code.Generators.Weapons
     {
         public static RifleStats GenerateNewRifle(ItemQuality quality)
         {
-            var genData = RifleGenerationPresets.CommonRifleData;
+            var genData = RifleGenerationPresets.RifleGenData[quality];
             var stats = new RifleStats();
 
             stats.Accuracy = RandomService.GetRandom(genData.MinAccuracy, genData.MaxAccuracy);

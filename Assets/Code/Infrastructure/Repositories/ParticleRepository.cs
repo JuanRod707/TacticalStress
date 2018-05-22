@@ -7,5 +7,6 @@ namespace Code.Infrastructure.Repositories
         public GameObject ShotLine;
         public GameObject ShotHit;
         public GameObject BulletHole;
+        public GameObject DamageNumber;
     }
 }

@@ -55,6 +55,8 @@ MonoBehaviour:
   ShotLine: {fileID: 1836030632982652, guid: bd97c00cbe03cf546a2e6be6bf10def7, type: 2}
   ShotHit: {fileID: 1193714161867616, guid: cb5ae6fe9511fad42ad268f40c61586c, type: 2}
   BulletHole: {fileID: 1562766468098420, guid: 42ce5def62bcd1b459a87c3f687e304f, type: 2}
+  DamageNumber: {fileID: 1136994298845952, guid: 3f1e30d2c919a614886b66f0d86bb1e1,
+    type: 2}
 --- !u!114 &114438898519711886
 MonoBehaviour:
   m_ObjectHideFlags: 1
