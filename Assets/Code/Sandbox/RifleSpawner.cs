@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Assets.Code.Weapons;
 using Code.Enums;
@@ -12,7 +11,6 @@ using Code.Weapons;
 using UnityEditor.Experimental.Build.AssetBundle;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Vuforia;
 
 namespace Code.Sandbox
 {
