@@ -21,7 +21,7 @@ namespace Code.Action
         {
             Look();
             //Move();
-            Attack();
+            ReadActionInput();
         }
 
         void Look()
@@ -53,12 +53,44 @@ namespace Code.Action
             ControlledBody.Translate(moveVector * Speed);
         }
 
+        void ReadActionInput()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Attack();
+            }
+            else if(Input.GetMouseButtonDown(1))
+            {
+                Aim();
+            }
+            else if(Input.GetKeyDown(KeyCode.R))
+            {
+                Reload();
+            }
+            else if (Input.mouseScrollDelta.magnitude > 0)
+            {
+                ChangeFireMode();
+            }
+        }
+
         void Attack()
         {
-            if (Input.GetMouseButton(0))
-            {
-                Weapon.Shoot();
-            }
+            Weapon.Shoot();
+        }
+
+        void ChangeFireMode()
+        {
+            
+        }
+
+        void Reload()
+        {
+            
+        }
+
+        void Aim()
+        {
+            
         }
 
         public void Activate()
