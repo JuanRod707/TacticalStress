@@ -7929,6 +7929,7 @@ GameObject:
   - component: {fileID: 308932979}
   - component: {fileID: 308932981}
   - component: {fileID: 308932982}
+  - component: {fileID: 308932983}
   m_Layer: 5
   m_Name: Action
   m_TagString: Untagged
@@ -8026,6 +8027,19 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!114 &308932983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 308932977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c29176f9e19dd42a71c4e0c68b8418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DynamicFormat: Aim ({0}TUs)
+  TargetText: {fileID: 0}
 --- !u!1 &314041857
 GameObject:
   m_ObjectHideFlags: 0
@@ -15557,6 +15571,7 @@ GameObject:
   - component: {fileID: 672173785}
   - component: {fileID: 672173787}
   - component: {fileID: 672173788}
+  - component: {fileID: 672173789}
   m_Layer: 5
   m_Name: Action
   m_TagString: Untagged
@@ -15654,6 +15669,19 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!114 &672173789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 672173783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c29176f9e19dd42a71c4e0c68b8418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DynamicFormat: '{0} ({1}TUs)'
+  TargetText: {fileID: 0}
 --- !u!1 &682244326
 GameObject:
   m_ObjectHideFlags: 0
@@ -19804,9 +19832,20 @@ Prefab:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114204092327486480, guid: 5d02bc3ab93559044b74c8416cfa2ffc,
+        type: 2}
+      propertyPath: Stats
+      value: 
+      objectReference: {fileID: 972750227}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5d02bc3ab93559044b74c8416cfa2ffc, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &972750227 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114286151313861576, guid: 5d02bc3ab93559044b74c8416cfa2ffc,
+    type: 2}
+  m_PrefabInternal: {fileID: 972750226}
+  m_Script: {fileID: 11500000, guid: f2bad6b73b74a80429a739cb3ba7b186, type: 3}
 --- !u!1 &973433658
 GameObject:
   m_ObjectHideFlags: 0
@@ -20478,6 +20517,7 @@ GameObject:
   - component: {fileID: 1017383817}
   - component: {fileID: 1017383819}
   - component: {fileID: 1017383820}
+  - component: {fileID: 1017383821}
   m_Layer: 5
   m_Name: Action
   m_TagString: Untagged
@@ -20575,6 +20615,19 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!114 &1017383821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1017383815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c29176f9e19dd42a71c4e0c68b8418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DynamicFormat: Reload ({0}TUs)
+  TargetText: {fileID: 0}
 --- !u!1 &1035668413
 GameObject:
   m_ObjectHideFlags: 0
@@ -23729,6 +23782,7 @@ GameObject:
   - component: {fileID: 1212868106}
   - component: {fileID: 1212868105}
   - component: {fileID: 1212868104}
+  - component: {fileID: 1212868108}
   m_Layer: 5
   m_Name: TimeUnits
   m_TagString: Untagged
@@ -23826,6 +23880,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1212868102}
+--- !u!114 &1212868108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1212868102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c29176f9e19dd42a71c4e0c68b8418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DynamicFormat: '{0}/{1}TUs'
+  TargetText: {fileID: 0}
 --- !u!1 &1226631957
 GameObject:
   m_ObjectHideFlags: 0
@@ -35417,6 +35484,7 @@ GameObject:
   - component: {fileID: 1854759672}
   - component: {fileID: 1854759671}
   - component: {fileID: 1854759670}
+  - component: {fileID: 1854759674}
   m_Layer: 5
   m_Name: Ammo
   m_TagString: Untagged
@@ -35514,6 +35582,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1854759668}
+--- !u!114 &1854759674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1854759668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c29176f9e19dd42a71c4e0c68b8418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DynamicFormat: 'Ammo: {0}/{1}'
+  TargetText: {fileID: 0}
 --- !u!43 &1855297737
 Mesh:
   m_ObjectHideFlags: 0
@@ -35712,6 +35793,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1891151948}
   - component: {fileID: 1891151949}
+  - component: {fileID: 1891151950}
   m_Layer: 5
   m_Name: WeaponPanel
   m_TagString: Untagged
@@ -35765,6 +35847,22 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
   m_ChildControlHeight: 0
+--- !u!114 &1891151950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1891151947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15a3802b94a940aaaa224b529b1be08f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeUnits: {fileID: 0}
+  Ammo: {fileID: 0}
+  ReloadAction: {fileID: 0}
+  FireAction: {fileID: 0}
+  AimAction: {fileID: 0}
 --- !u!1 &1893010607
 GameObject:
   m_ObjectHideFlags: 0

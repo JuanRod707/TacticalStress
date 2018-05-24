@@ -6,6 +6,11 @@ namespace Code.Actors
     public class ActorStats : MonoBehaviour
     {
         public int StartingTimeUnits;
+        public int CurrentTimeUnits
+        {
+            get { return currentTimeUnits; }
+        }
+
         public DynamicText TUsLabel;
 
         private int currentTimeUnits;

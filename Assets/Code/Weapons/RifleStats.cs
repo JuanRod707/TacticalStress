@@ -17,5 +17,8 @@ namespace Code.Weapons
         public float Range;
         public float Recoil;
         public float AimRecovery;
+
+        public float AimBonus;
+        public int AimPercentageCost;
     }
 }

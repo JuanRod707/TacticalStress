@@ -3,6 +3,6 @@
     public interface Weapon
     {
         float Inaccuracy { get; }
-        void Shoot();
+        void Attack();
     }
 }

@@ -1,4 +1,6 @@
-﻿using Code.Weapons;
+﻿using Code.Actors;
+using Code.UI.Action;
+using Code.Weapons;
 using UnityEngine;
 
 namespace Code.Action
@@ -14,6 +16,9 @@ namespace Code.Action
         public Transform AimPoint;
         public Transform ControlledBody;
         public Transform ShoulderCamera;
+        public ActorStats Stats;
+
+        public AttackPanel attackPanel;
 
         private Vector3 previousMousePos;
 
@@ -57,40 +62,25 @@ namespace Code.Action
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Attack();
+                Weapon.Attack();
+                attackPanel.UpdateAmmo(Weapon.Stats.AmmoPerMag, Weapon.CurrentAmmo);
+                attackPanel.UpdateTimeUnits(Stats.StartingTimeUnits, Stats.CurrentTimeUnits);
             }
             else if(Input.GetMouseButtonDown(1))
             {
-                Aim();
+                Weapon.Aim();
+                attackPanel.UpdateAimAction(CalculateTimePercentage(Weapon.Stats.AimPercentageCost));
             }
             else if(Input.GetKeyDown(KeyCode.R))
             {
-                Reload();
+                Weapon.Reload();
+                attackPanel.UpdateAmmo(Weapon.Stats.AmmoPerMag, Weapon.CurrentAmmo);
             }
-            else if (Input.mouseScrollDelta.magnitude > 0)
+            else if (Input.mouseScrollDelta.magnitude > 0 || Input.GetKeyDown(KeyCode.F))
             {
-                ChangeFireMode();
+                Weapon.CycleFiringMode();
+                attackPanel.UpdateFireAction(Weapon.CurrentMode.ModeName, CalculateTimePercentage(Weapon.CurrentMode.TimePercentageCost));
             }
-        }
-
-        void Attack()
-        {
-            Weapon.Shoot();
-        }
-
-        void ChangeFireMode()
-        {
-            
-        }
-
-        void Reload()
-        {
-            
-        }
-
-        void Aim()
-        {
-            
         }
 
         public void Activate()
@@ -103,6 +93,11 @@ namespace Code.Action
         {
             this.enabled = false;
             Weapon.enabled = false;
+        }
+
+        int CalculateTimePercentage(int percentage)
+        {
+            return (percentage * Stats.StartingTimeUnits) / 100;
         }
     }
 }

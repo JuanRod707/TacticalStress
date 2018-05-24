@@ -8,6 +8,6 @@ namespace Code.Weapons
         public string ModeName;
         public int TimePercentageCost;
         public int RoundsToFire;
-        public float AccuracyEffect;
+        public float AccuracyModifier;
     }
 }
