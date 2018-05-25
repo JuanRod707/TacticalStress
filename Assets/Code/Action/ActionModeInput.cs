@@ -1,31 +1,23 @@
-﻿using Code.Actors;
-using Code.UI.Action;
-using Code.Weapons;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Code.Action
 {
-    public class TPSController : MonoBehaviour
+    public class ActionModeInput : MonoBehaviour
     {
-        public float Speed;
         public float Sensitivity;
         public float VertSensitivity;
-        public Rifle Weapon;
         public float MaxElevation;
         public float MinElevation;
         public Transform AimPoint;
         public Transform ControlledBody;
         public Transform ShoulderCamera;
-        public ActorStats Stats;
-
-        public AttackPanel attackPanel;
+        public ActionModeController ActionController;
 
         private Vector3 previousMousePos;
 
         void Update()
         {
             Look();
-            //Move();
             ReadActionInput();
         }
 
@@ -51,53 +43,35 @@ namespace Code.Action
 
             previousMousePos = mouse;
         }
-
-        void Move()
-        {
-            var moveVector = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
-            ControlledBody.Translate(moveVector * Speed);
-        }
-
+        
         void ReadActionInput()
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Weapon.Attack();
-                attackPanel.UpdateAmmo(Weapon.Stats.AmmoPerMag, Weapon.CurrentAmmo);
-                attackPanel.UpdateTimeUnits(Stats.StartingTimeUnits, Stats.CurrentTimeUnits);
+                ActionController.AttackCommand();
             }
             else if(Input.GetMouseButtonDown(1))
             {
-                Weapon.Aim();
-                attackPanel.UpdateAimAction(CalculateTimePercentage(Weapon.Stats.AimPercentageCost));
+                ActionController.AimCommand();
             }
             else if(Input.GetKeyDown(KeyCode.R))
             {
-                Weapon.Reload();
-                attackPanel.UpdateAmmo(Weapon.Stats.AmmoPerMag, Weapon.CurrentAmmo);
+                ActionController.ReloadCommand();
             }
             else if (Input.mouseScrollDelta.magnitude > 0 || Input.GetKeyDown(KeyCode.F))
             {
-                Weapon.CycleFiringMode();
-                attackPanel.UpdateFireAction(Weapon.CurrentMode.ModeName, CalculateTimePercentage(Weapon.CurrentMode.TimePercentageCost));
+                ActionController.CycleFireCommand();
             }
         }
 
         public void Activate()
         {
             this.enabled = true;
-            Weapon.enabled = true;
         }
 
         public void Deactivate()
         {
             this.enabled = false;
-            Weapon.enabled = false;
-        }
-
-        int CalculateTimePercentage(int percentage)
-        {
-            return (percentage * Stats.StartingTimeUnits) / 100;
         }
     }
 }

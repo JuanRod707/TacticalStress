@@ -18,7 +18,9 @@ namespace Code.Weapons
         public float Recoil;
         public float AimRecovery;
 
-        public float AimBonus;
-        public int AimPercentageCost;
+        public float AimBonus = 5f;
+        public float AimZoomModifier = 25f;
+        public int AimPercentageCost = 10;
+        public int ReloadPercentageCost = 20;
     }
 }

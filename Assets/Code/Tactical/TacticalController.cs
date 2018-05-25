@@ -15,9 +15,7 @@ namespace Code.Tactical
         public float StopDistance;
         public Transform MoveBody;
         public LayerMask FloorLayer;
-        public TPSController ManualControl;
-        public GameObject Crosshair;
-        public ActorStats Actor;
+        public Actor Actor;
         public int MovementCost;
 
         private bool isMoving;
@@ -48,7 +46,7 @@ namespace Code.Tactical
 
         public void SetPath(IEnumerable<Transform> path)
         {
-            if (Actor.CommitTimeAction((path.Count() - 1) * MovementCost))
+            if (Actor.Stats.CommitTimeAction((path.Count() - 1) * MovementCost))
             {
                 this.path = path.ToList();
                 targetIndex = 0;
@@ -105,30 +103,14 @@ namespace Code.Tactical
             }
         }
 
-        void Activate()
+        public void Activate()
         {
             this.enabled = true;
-            ManualControl.Deactivate();
-            Crosshair.SetActive(false);
         }
 
-        void Deactivate()
+        public void Deactivate()
         {
             this.enabled = false;
-            ManualControl.Activate();
-            Crosshair.SetActive(true);
-        }
-
-        public void ChangeControlMode()
-        {
-            if (enabled)
-            {
-                Deactivate();
-            }
-            else
-            {
-                Activate();
-            }
         }
 
         void HideVisualElements()

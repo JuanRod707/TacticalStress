@@ -10,14 +10,14 @@ namespace Code.UI.Action
         public DynamicText FireAction;
         public DynamicText AimAction;
 
-        public void UpdateTimeUnits(int total, int remaining)
+        public void UpdateTimeUnits(int remaining, int total)
         {
-            TimeUnits.SetDynamicText(total, remaining);
+            TimeUnits.SetDynamicText(remaining, total);
         }
 
-        public void UpdateAmmo(int total, int remaining)
+        public void UpdateAmmo(int remaining, int total)
         {
-            Ammo.SetDynamicText(total, remaining);
+            Ammo.SetDynamicText(remaining, total);
         }
 
         public void UpdateReload(int timeUnits)
@@ -27,7 +27,7 @@ namespace Code.UI.Action
 
         public void UpdateFireAction(string modeName, int timeUnits)
         {
-            ReloadAction.SetDynamicText(modeName, timeUnits);
+            FireAction.SetDynamicText(modeName, timeUnits);
         }
 
         public void UpdateAimAction(int timeUnits)

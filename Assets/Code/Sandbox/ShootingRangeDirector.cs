@@ -1,10 +1,12 @@
 ﻿using Code.Action;
+using Code.Actors;
 using Code.Cameras;
 using Code.Enums;
 using Code.Generators.Weapons;
 using Code.Infrastructure.Persistance;
 using Code.Infrastructure.Repositories;
 using Code.UI;
+using Code.UI.Action;
 using UnityEngine;
 
 namespace Code.Sandbox
@@ -12,19 +14,21 @@ namespace Code.Sandbox
     public class ShootingRangeDirector : MonoBehaviour
     {
         public DualPointCamera Camera;
-        public TPSController actor;
+        public Actor Actor;
         public AdvancedCrosshair Crosshair;
+        public AttackPanel ActionModePanel;
 
         void Start()
         {
-            Camera.SetCameraPoints(actor.ShoulderCamera, actor.AimPoint);
+            Camera.SetCameraPoints(Actor.ActionInput.ShoulderCamera, Actor.ActionInput.AimPoint);
             InitializeRifle();
-            Crosshair.AttachWeapon(actor.Weapon);
+            Crosshair.AttachWeapon(Actor.ActionController.Weapon);
+            Actor.SwitchToActionMode(ActionModePanel);
         }
 
         void InitializeRifle()
         {
-            var rifle = actor.Weapon;
+            var rifle = Actor.ActionController.Weapon;
 
             if (Session.GeneratedRifleStats == null)
             {

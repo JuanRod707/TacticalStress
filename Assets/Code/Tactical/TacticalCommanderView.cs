@@ -19,7 +19,7 @@ namespace Code.Tactical
         public GameObject Selector;
         public GameObject MovementTargetMarker;
         public ModeSwitcher ModeSwitcher;
-        public ActorStats[] Squad;
+        public Actor[] Squad;
 
         public MovementLine MovementLine;
         public MovementMarker MovementMarker;
@@ -162,14 +162,12 @@ namespace Code.Tactical
 
             if (SelectedActorReady)
             {
-                ModeSwitcher.SwitchToActionMode(selectedActor.ManualControl);
+                ModeSwitcher.SwitchToActionMode(selectedActor.Actor.ActionInput);
                 HideVisualElements();
-                selectedActor.ChangeControlMode();
             }
             else if(!selectedActor.enabled)
             {
                 ModeSwitcher.SwitchToTacticalMode();
-                selectedActor.ChangeControlMode();
             }
         }
 
@@ -177,7 +175,7 @@ namespace Code.Tactical
         {
             foreach (var actor in Squad)
             {
-                actor.ResetTimeUnits();
+                actor.Stats.ResetTimeUnits();
             }
         }
     }

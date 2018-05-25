@@ -1,8 +1,10 @@
-﻿namespace Code.Weapons
+﻿using System;
+
+namespace Code.Weapons
 {
     public interface Weapon
     {
         float Inaccuracy { get; }
-        void Attack();
+        void Attack(Action<int, int> displayAmmo);
     }
 }

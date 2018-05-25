@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Code.Actors
 {
-    public class ActorStats : MonoBehaviour
+    public class ActorStats
     {
         public int StartingTimeUnits;
         public int CurrentTimeUnits
@@ -11,12 +11,14 @@ namespace Code.Actors
             get { return currentTimeUnits; }
         }
 
-        public DynamicText TUsLabel;
+        DynamicText timeLabel;
 
         private int currentTimeUnits;
 
-        void Start()
+        public ActorStats(DynamicText label, int timeUnits)
         {
+            StartingTimeUnits = timeUnits;
+            timeLabel = label;
             ResetTimeUnits();
         }
 
@@ -25,7 +27,7 @@ namespace Code.Actors
             if (currentTimeUnits >= timeCost)
             {
                 currentTimeUnits -= timeCost;
-                TUsLabel.SetDynamicText(currentTimeUnits);
+                timeLabel.SetDynamicText(currentTimeUnits);
                 return true;
             }
 
@@ -35,7 +37,7 @@ namespace Code.Actors
         public void ResetTimeUnits()
         {
             currentTimeUnits = StartingTimeUnits;
-            TUsLabel.SetDynamicText(currentTimeUnits);
+            timeLabel.SetDynamicText(currentTimeUnits);
         }
     }
 }

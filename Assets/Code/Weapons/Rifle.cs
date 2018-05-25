@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Assets.Code.Enums;
 using Code.BodyParts;
 using Code.Infrastructure.Repositories;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Code.Weapons
 {
@@ -28,7 +30,9 @@ namespace Code.Weapons
         private int currentFiringMode;
         private WeaponState currentState;
         float accuracyModifier;
-        
+        private Action<int, int> displayAmmoAction = (a, b) => { };
+
+
         public float Inaccuracy
         {
             get { return 1 - (100f / (currentAccuracy + accuracyModifier)); }
@@ -75,10 +79,11 @@ namespace Code.Weapons
             accuracyModifier = CurrentMode.AccuracyModifier + Stats.AimBonus;
         }
 
-        public void Attack()
+        public void Attack(Action<int, int> displayAmmo)
         {
             if (currentState == WeaponState.Ready)
             {
+                displayAmmoAction = displayAmmo;
                 var firingTime = CurrentMode.RoundsToFire * Stats.RateOfFire;
                 currentState = WeaponState.Firing;
                 StartCoroutine(TimedFire(firingTime));
@@ -112,6 +117,7 @@ namespace Code.Weapons
         {
             yield return new WaitForSeconds(time);
             currentState = WeaponState.Ready;
+            accuracyModifier = CurrentMode.AccuracyModifier;
         }
 
         void Shoot()
@@ -158,6 +164,7 @@ namespace Code.Weapons
                 }
 
                 CurrentAmmo--;
+                displayAmmoAction(CurrentAmmo, Stats.AmmoPerMag);
                 fireSfx.Play();
                 DisplayMuzzle();
                 StartCoroutine(CycleBullet());

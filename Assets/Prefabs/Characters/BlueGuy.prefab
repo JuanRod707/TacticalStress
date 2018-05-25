@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4672522521019502}
   - component: {fileID: 114286151313861576}
-  - component: {fileID: 114622197439282054}
   m_Layer: 0
   m_Name: BlueGuy
   m_TagString: Untagged
@@ -116,8 +115,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4736409224215194}
   - component: {fileID: 114204092327486480}
+  - component: {fileID: 114470660266288870}
   m_Layer: 0
-  m_Name: TPSController
+  m_Name: ActionController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -631,6 +631,7 @@ GameObject:
   - component: {fileID: 224505509926955432}
   - component: {fileID: 222718752683971712}
   - component: {fileID: 114212652945075828}
+  - component: {fileID: 114710053820514278}
   m_Layer: 5
   m_Name: CurrentTUs
   m_TagString: Untagged
@@ -1014,8 +1015,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000909033621024}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.07, y: 0, z: 19.2}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0.02, y: 0, z: 19.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4028649175763910}
@@ -2017,15 +2018,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef3f0b72a5724322ac7c29b3c722ad57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 0.1
   Sensitivity: 0.4
   VertSensitivity: 0.03
-  Weapon: {fileID: 114416971099173350}
   MaxElevation: 16
   MinElevation: -50
   AimPoint: {fileID: 4140264713779878}
   ControlledBody: {fileID: 4672522521019502}
   ShoulderCamera: {fileID: 4191435044512240}
+  ActionController: {fileID: 114470660266288870}
 --- !u!114 &114212652945075828
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2067,11 +2067,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000909033621024}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2bad6b73b74a80429a739cb3ba7b186, type: 3}
+  m_Script: {fileID: 11500000, guid: c5e8c964797fde146a01d8a4119c899e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartingTimeUnits: 34
-  TUsLabel: {fileID: 114622197439282054}
+  TimeUnitsLabel: {fileID: 114710053820514278}
+  ActionInput: {fileID: 114204092327486480}
+  ActionController: {fileID: 114470660266288870}
+  TacticalController: {fileID: 114320395845948110}
 --- !u!114 &114313364660870806
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2101,8 +2103,6 @@ MonoBehaviour:
   FloorLayer:
     serializedVersion: 2
     m_Bits: 1024
-  ManualControl: {fileID: 114204092327486480}
-  Crosshair: {fileID: 0}
   Actor: {fileID: 114286151313861576}
   MovementCost: 1
 --- !u!114 &114416971099173350
@@ -2116,19 +2116,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b44e17bf00d44d787b32d69bd41e5a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114622197439282054
+--- !u!114 &114470660266288870
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000909033621024}
+  m_GameObject: {fileID: 1071130522163004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edba950e88847fa44aea59f6cabee052, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Weapon: {fileID: 114416971099173350}
+  Actor: {fileID: 114286151313861576}
+--- !u!114 &114710053820514278
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1958281365621978}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 99c29176f9e19dd42a71c4e0c68b8418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   DynamicFormat: 'TUs: {0}'
-  TargetText: {fileID: 114212652945075828}
+  TargetText: {fileID: 0}
 --- !u!114 &114861068932471580
 MonoBehaviour:
   m_ObjectHideFlags: 1

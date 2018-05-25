@@ -20,7 +20,7 @@ namespace Code.Directors
             Camera.SetCameraPoints(Crane.CameraPosition, Crane.Center);
         }
 
-        public void SwitchToActionMode(TPSController soldier)
+        public void SwitchToActionMode(ActionModeInput soldier)
         {
             Crane.enabled = false;
             Camera.SetCameraPoints(soldier.ShoulderCamera, soldier.AimPoint);
