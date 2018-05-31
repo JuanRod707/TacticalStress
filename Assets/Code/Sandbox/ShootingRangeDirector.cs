@@ -14,14 +14,13 @@ namespace Code.Sandbox
     {
         public DualPointCamera Camera;
         public Actor Actor;
-        public AdvancedCrosshair Crosshair;
         public AttackPanel ActionModePanel;
 
         void Start()
         {
             Camera.SetCameraPoints(Actor.ActionInput.ShoulderCamera, Actor.ActionInput.AimPoint);
             InitializeRifle();
-            Crosshair.AttachWeapon(Actor.ActionController.Weapon);
+            ActionModePanel.Crosshair.AttachWeapon(Actor.ActionController.Weapon);
             Actor.SwitchToActionMode(ActionModePanel);
         }
 

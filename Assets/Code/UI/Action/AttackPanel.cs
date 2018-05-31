@@ -9,6 +9,7 @@ namespace Code.UI.Action
         public DynamicText ReloadAction;
         public DynamicText FireAction;
         public DynamicText AimAction;
+        public AdvancedCrosshair Crosshair;
 
         public void UpdateTimeUnits(int remaining, int total)
         {

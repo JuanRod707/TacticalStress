@@ -6,6 +6,7 @@ using Code.Helpers;
 using Code.Infrastructure.Map;
 using Code.Infrastructure.Pathfinding;
 using Code.Tactical.VisualElements;
+using Code.UI.Action;
 using UnityEngine;
 
 namespace Code.Tactical
@@ -164,10 +165,13 @@ namespace Code.Tactical
             {
                 ModeSwitcher.SwitchToActionMode(selectedActor.Actor.ActionInput);
                 HideVisualElements();
+                selectedActor.Actor.SwitchToActionMode(ModeSwitcher.ActionModeUI);
+                ModeSwitcher.ActionModeUI.Crosshair.AttachWeapon(selectedActor.Actor.ActionController.Weapon);
             }
             else if(!selectedActor.enabled)
             {
                 ModeSwitcher.SwitchToTacticalMode();
+                selectedActor.Actor.SwitchToTacticalMode();
             }
         }
 
