@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Code.Enums;
+using Code.Actors;
 using Code.BodyParts;
 using Code.Infrastructure.Repositories;
 using UnityEngine;
@@ -26,16 +27,15 @@ namespace Code.Weapons
         ParticleSystem muzzleEffect;
         private AudioSource fireSfx;
         private bool isCycling;
-        float currentAccuracy;
         private int currentFiringMode;
         private WeaponState currentState;
         float accuracyModifier;
+        private float currentAccuracy;
         private Action<int, int> displayAmmoAction = (a, b) => { };
 
-
-        public float Inaccuracy
+        public float CurrentAccuracy
         {
-            get { return 1 - (100f / (currentAccuracy + accuracyModifier)); }
+            get { return currentAccuracy + accuracyModifier; }
         }
 
         public void Initialize(RifleStats stats, Transform body, Transform barrel, Transform stock, Transform mag)
@@ -193,7 +193,7 @@ namespace Code.Weapons
 
         Vector3 GetRandomArcPoint()
         {
-            var randomPoint = Random.insideUnitSphere * Inaccuracy;
+            var randomPoint = Random.insideUnitSphere * GetComponentInParent<Actor>().Inaccuracy;
             var cam = Camera.main.transform;
             var result = (cam.forward * Stats.Range) + randomPoint;
 

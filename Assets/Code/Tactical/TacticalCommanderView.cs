@@ -166,7 +166,7 @@ namespace Code.Tactical
                 ModeSwitcher.SwitchToActionMode(selectedActor.Actor.ActionInput);
                 HideVisualElements();
                 selectedActor.Actor.SwitchToActionMode(ModeSwitcher.ActionModeUI);
-                ModeSwitcher.ActionModeUI.Crosshair.AttachWeapon(selectedActor.Actor.ActionController.Weapon);
+                ModeSwitcher.ActionModeUI.Crosshair.AttachToActor(selectedActor.Actor);
             }
             else if(!selectedActor.enabled)
             {
@@ -179,7 +179,7 @@ namespace Code.Tactical
         {
             foreach (var actor in Squad)
             {
-                actor.Stats.ResetTimeUnits();
+                actor.TimeActions.ResetTimeUnits();
             }
         }
     }

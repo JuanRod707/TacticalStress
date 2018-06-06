@@ -3,9 +3,8 @@ using UnityEngine;
 
 namespace Code.Actors
 {
-    public class ActorStats
+    public class TimeActions
     {
-        public int StartingTimeUnits;
         public int CurrentTimeUnits
         {
             get { return currentTimeUnits; }
@@ -13,11 +12,12 @@ namespace Code.Actors
 
         DynamicText timeLabel;
 
-        private int currentTimeUnits;
+        int startingTimeUnits;
+        int currentTimeUnits;
 
-        public ActorStats(DynamicText label, int timeUnits)
+        public TimeActions(DynamicText label, int timeUnits)
         {
-            StartingTimeUnits = timeUnits;
+            startingTimeUnits = timeUnits;
             timeLabel = label;
             ResetTimeUnits();
         }
@@ -36,7 +36,7 @@ namespace Code.Actors
 
         public void ResetTimeUnits()
         {
-            currentTimeUnits = StartingTimeUnits;
+            currentTimeUnits = startingTimeUnits;
             timeLabel.SetDynamicText(currentTimeUnits);
         }
     }

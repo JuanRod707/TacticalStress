@@ -30,6 +30,7 @@ namespace Code.Cameras
         {
             this.targetView = targetView;
             targetPos = position;
+            GetComponent<CameraZoom>().ZoomOut();
         }
     }
 }

@@ -4,7 +4,7 @@ namespace Code.Weapons
 {
     public interface Weapon
     {
-        float Inaccuracy { get; }
+        float CurrentAccuracy { get; }
         void Attack(Action<int, int> displayAmmo);
     }
 }

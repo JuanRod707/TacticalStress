@@ -46,7 +46,7 @@ namespace Code.Tactical
 
         public void SetPath(IEnumerable<Transform> path)
         {
-            if (Actor.Stats.CommitTimeAction((path.Count() - 1) * MovementCost))
+            if (Actor.TimeActions.CommitTimeAction((path.Count() - 1) * MovementCost))
             {
                 this.path = path.ToList();
                 targetIndex = 0;

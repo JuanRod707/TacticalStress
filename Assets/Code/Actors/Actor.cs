@@ -1,24 +1,31 @@
-﻿using Code.Action;
+﻿using Assets.Code.Actors;
+using Code.Action;
 using Code.Tactical;
 using Code.UI;
 using Code.UI.Action;
+using Code.Weapons;
 using UnityEngine;
 
 namespace Code.Actors
 {
     public class Actor : MonoBehaviour
     {
+        public Stats Stats;
         public DynamicText TimeUnitsLabel;
-
         public ActionModeInput ActionInput;
         public ActionModeController ActionController;
         public TacticalController TacticalController;
 
-        public ActorStats Stats { get; private set; }
+        public TimeActions TimeActions { get; private set; }
+
+        public float Inaccuracy
+        {
+            get { return 1 - (100f / (Stats.CurrentAccuracy + ActionController.Weapon.CurrentAccuracy)); }
+        }
 
         void Start()
         {
-            Stats = new ActorStats(TimeUnitsLabel, 34);
+            TimeActions = new TimeActions(TimeUnitsLabel, Stats.TimeUnits);
         }
 
         public void SwitchToActionMode(AttackPanel panel)

@@ -20,7 +20,7 @@ namespace Code.Sandbox
         {
             Camera.SetCameraPoints(Actor.ActionInput.ShoulderCamera, Actor.ActionInput.AimPoint);
             InitializeRifle();
-            ActionModePanel.Crosshair.AttachWeapon(Actor.ActionController.Weapon);
+            ActionModePanel.Crosshair.AttachToActor(Actor);
             Actor.SwitchToActionMode(ActionModePanel);
         }
 

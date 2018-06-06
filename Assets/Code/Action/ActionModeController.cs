@@ -18,15 +18,20 @@ namespace Code.Action
         private Action<int> updateReloadDisplay = (a) => { };
         private Action<string, int> updateFireModeDisplay = (a, b) => { };
 
+        private int BaseTimeUnits
+        {
+            get { return Actor.Stats.TimeUnits; }
+        }
+
         public void AttackCommand()
         {
             var cost = MathHelper.CalculatePercentage(Weapon.CurrentMode.TimePercentageCost,
-                Actor.Stats.StartingTimeUnits);
+                BaseTimeUnits);
 
-            if (Actor.Stats.CommitTimeAction(cost))
+            if (Actor.TimeActions.CommitTimeAction(cost))
             {
                 Weapon.Attack(updateAmmoDisplay);
-                updateTimeDisplay(Actor.Stats.CurrentTimeUnits, Actor.Stats.StartingTimeUnits);
+                updateTimeDisplay(Actor.TimeActions.CurrentTimeUnits, BaseTimeUnits);
                 Camera.main.GetComponent<CameraZoom>().ZoomOut();
             }
         }
@@ -34,25 +39,25 @@ namespace Code.Action
         public void ReloadCommand()
         {
             var cost = MathHelper.CalculatePercentage(Weapon.Stats.ReloadPercentageCost,
-                Actor.Stats.StartingTimeUnits);
+                BaseTimeUnits);
 
-            if (Actor.Stats.CommitTimeAction(cost))
+            if (Actor.TimeActions.CommitTimeAction(cost))
             {
                 Weapon.Reload();
                 updateAmmoDisplay(Weapon.CurrentAmmo, Weapon.Stats.AmmoPerMag);
-                updateTimeDisplay(Actor.Stats.CurrentTimeUnits, Actor.Stats.StartingTimeUnits);
+                updateTimeDisplay(Actor.TimeActions.CurrentTimeUnits, BaseTimeUnits);
             }
         }
 
         public void AimCommand()
         {
             var cost = MathHelper.CalculatePercentage(Weapon.Stats.AimPercentageCost,
-                Actor.Stats.StartingTimeUnits);
+                BaseTimeUnits);
 
-            if (Actor.Stats.CommitTimeAction(cost))
+            if (Actor.TimeActions.CommitTimeAction(cost))
             {
                 Weapon.Aim();
-                updateTimeDisplay(Actor.Stats.CurrentTimeUnits, Actor.Stats.StartingTimeUnits);
+                updateTimeDisplay(Actor.TimeActions.CurrentTimeUnits, BaseTimeUnits);
                 Camera.main.GetComponent<CameraZoom>().ZoomIn(Weapon.Stats.AimZoomModifier);
             }
         }
@@ -61,7 +66,7 @@ namespace Code.Action
         {
             Weapon.CycleFiringMode();
             var cost = MathHelper.CalculatePercentage(Weapon.CurrentMode.TimePercentageCost,
-                Actor.Stats.StartingTimeUnits);
+                BaseTimeUnits);
             updateFireModeDisplay(Weapon.CurrentMode.ModeName, cost);
         }
 
@@ -78,11 +83,11 @@ namespace Code.Action
             updateReloadDisplay = updateReload;
             updateFireModeDisplay = updateFireMode;
 
-            updateTimeDisplay(Actor.Stats.CurrentTimeUnits, Actor.Stats.StartingTimeUnits);
+            updateTimeDisplay(Actor.TimeActions.CurrentTimeUnits, BaseTimeUnits);
             updateAmmoDisplay(Weapon.CurrentAmmo, Weapon.Stats.AmmoPerMag);
-            updateAimDisplay(MathHelper.CalculatePercentage(Weapon.Stats.AimPercentageCost, Actor.Stats.StartingTimeUnits));
-            updateReloadDisplay(MathHelper.CalculatePercentage(Weapon.Stats.ReloadPercentageCost, Actor.Stats.StartingTimeUnits));
-            updateFireModeDisplay(Weapon.CurrentMode.ModeName, MathHelper.CalculatePercentage(Weapon.CurrentMode.TimePercentageCost, Actor.Stats.StartingTimeUnits));
+            updateAimDisplay(MathHelper.CalculatePercentage(Weapon.Stats.AimPercentageCost, BaseTimeUnits));
+            updateReloadDisplay(MathHelper.CalculatePercentage(Weapon.Stats.ReloadPercentageCost, BaseTimeUnits));
+            updateFireModeDisplay(Weapon.CurrentMode.ModeName, MathHelper.CalculatePercentage(Weapon.CurrentMode.TimePercentageCost, BaseTimeUnits));
         }
 
         public void Activate()

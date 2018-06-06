@@ -1,4 +1,5 @@
-﻿using Code.Weapons;
+﻿using Code.Actors;
+using Code.Weapons;
 using UnityEngine;
 
 namespace Code.UI
@@ -9,7 +10,7 @@ namespace Code.UI
         public float MaxDimension;
         public float CrossGrowthFactor;
 
-        private Weapon attachedWeapon;
+        private Actor actor;
         private RectTransform myRect;
 
         void Start()
@@ -19,9 +20,9 @@ namespace Code.UI
 
         void Update()
         {
-            if (attachedWeapon != null)
+            if (actor != null)
             {
-                UpdateDimension(attachedWeapon.Inaccuracy);
+                UpdateDimension(actor.Inaccuracy);
             }
         }
 
@@ -32,9 +33,9 @@ namespace Code.UI
             myRect.sizeDelta = new Vector2(dim, dim);
         }
 
-        public void AttachWeapon(Weapon weapon)
+        public void AttachToActor(Actor actor)
         {
-            attachedWeapon = weapon;
+            this.actor = actor;
         }
     }
 }

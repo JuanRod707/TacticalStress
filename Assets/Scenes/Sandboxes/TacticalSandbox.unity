@@ -25454,36 +25454,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114320395845948110, guid: 5d02bc3ab93559044b74c8416cfa2ffc,
-        type: 2}
-      propertyPath: Crosshair
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114416971099173350, guid: 5d02bc3ab93559044b74c8416cfa2ffc,
-        type: 2}
-      propertyPath: AdvCrosshair
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114416971099173350, guid: 5d02bc3ab93559044b74c8416cfa2ffc,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114204092327486480, guid: 5d02bc3ab93559044b74c8416cfa2ffc,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 136420622539873602, guid: 5d02bc3ab93559044b74c8416cfa2ffc,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114320395845948110, guid: 5d02bc3ab93559044b74c8416cfa2ffc,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 224505509926955432, guid: 5d02bc3ab93559044b74c8416cfa2ffc,
         type: 2}
       propertyPath: m_AnchorMin.y
