@@ -1,4 +1,5 @@
 ﻿using Code.Weapons;
+using Code.Weapons.Rifle;
 
 namespace Code.Infrastructure.Persistance
 {

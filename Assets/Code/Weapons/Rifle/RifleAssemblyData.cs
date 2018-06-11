@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Code.Weapons
+namespace Code.Weapons.Rifle
 {
     [Serializable]
     public class RifleAssemblyData

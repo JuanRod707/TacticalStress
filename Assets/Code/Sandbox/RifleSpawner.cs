@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using Assets.Code.Weapons;
 using Code.Enums;
 using Code.Generators.Weapons;
 using Code.Helpers;
@@ -8,7 +7,7 @@ using Code.Infrastructure.Persistance;
 using Code.Infrastructure.Repositories;
 using Code.UI;
 using Code.Weapons;
-using UnityEditor.Experimental.Build.AssetBundle;
+using Code.Weapons.Rifle;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

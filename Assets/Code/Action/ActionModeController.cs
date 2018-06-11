@@ -3,6 +3,7 @@ using Code.Weapons;
 using System;
 using Code.Cameras;
 using Code.Helpers;
+using Code.Weapons.Rifle;
 using UnityEngine;
 
 namespace Code.Action

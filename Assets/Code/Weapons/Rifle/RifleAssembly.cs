@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Code.Weapons
+namespace Code.Weapons.Rifle
 {
     public class RifleAssembly : MonoBehaviour
     {

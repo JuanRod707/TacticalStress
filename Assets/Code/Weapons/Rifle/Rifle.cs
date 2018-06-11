@@ -8,7 +8,7 @@ using Code.Infrastructure.Repositories;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Code.Weapons
+namespace Code.Weapons.Rifle
 {
     public class Rifle : MonoBehaviour, Weapon
     {

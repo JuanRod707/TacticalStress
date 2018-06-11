@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4518632649945546}
+  - component: {fileID: 114879066702619414}
   - component: {fileID: 114438898519711886}
   - component: {fileID: 114309090801022744}
   m_Layer: 0
@@ -88,3 +89,17 @@ MonoBehaviour:
   - {fileID: 114883910837616252, guid: 01f3cfc5b9e8bdf4981ddea247408601, type: 2}
   - {fileID: 114974305182965820, guid: aecb9cfa3eb17434283fa7529956ca22, type: 2}
   - {fileID: 114433112653426250, guid: ca304455dcac4c14eae9b5169fa89764, type: 2}
+--- !u!114 &114879066702619414
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1635447038377592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc9bfdc702ed4332810034bd8f2a6790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rifle: {fileID: 1570489869799032, guid: 8359ddcf2a93d2841874bbd1b160088c, type: 2}
+  GrenadeLauncher: {fileID: 1864498876133078, guid: 25071b09367450644b12e9d42f21ba57,
+    type: 2}

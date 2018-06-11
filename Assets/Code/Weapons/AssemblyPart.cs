@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Code.Weapons
+namespace Code.Weapons
 {
     public class AssemblyPart : MonoBehaviour
     {

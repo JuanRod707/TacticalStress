@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using Assets.Code.Weapons;
 using Code.Helpers;
+using Code.Weapons;
 using UnityEngine;
 
 namespace Code.Infrastructure.Repositories

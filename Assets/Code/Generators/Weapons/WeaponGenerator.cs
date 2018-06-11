@@ -1,6 +1,7 @@
 ﻿using Code.Enums;
 using Code.Helpers;
 using Code.Weapons;
+using Code.Weapons.Rifle;
 
 namespace Code.Generators.Weapons
 {

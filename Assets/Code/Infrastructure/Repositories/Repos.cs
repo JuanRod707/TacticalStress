@@ -18,5 +18,10 @@ namespace Code.Infrastructure.Repositories
         {
             get { return Repositories.GetComponent<ParticleRepository>(); }
         }
+
+        public static WeaponRepository WeaponRepo
+        {
+            get { return Repositories.GetComponent<WeaponRepository>(); }
+        }
     }
 }
