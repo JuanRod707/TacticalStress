@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$PROJECT_DIR$" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Code" t="Include">
+          <e p="Action" t="Include">
+            <e p="ActionModeController.cs" t="Include" />
+            <e p="ActionModeInput.cs" t="Include" />
+          </e>
+          <e p="Actors" t="Include">
+            <e p="Actor.cs" t="Include" />
+            <e p="Stats.cs" t="Include" />
+            <e p="TimeActions.cs" t="Include" />
+          </e>
+          <e p="BodyParts" t="Include">
+            <e p="Body.cs" t="Include" />
+            <e p="BodyPart.cs" t="Include" />
+            <e p="Grapple.cs" t="Include" />
+            <e p="GravityCounter.cs" t="Include" />
+            <e p="Pushable.cs" t="Include" />
+            <e p="ScriptableMotion.cs" t="Include" />
+            <e p="TorsoController.cs" t="Include" />
+            <e p="TorsoRotator.cs" t="Include" />
+            <e p="WeaponPivot.cs" t="Include" />
+          </e>
+          <e p="Cameras" t="Include">
+            <e p="CameraZoom.cs" t="Include" />
+            <e p="DualPointCamera.cs" t="Include" />
+            <e p="TacticalCameraCrane.cs" t="Include" />
+          </e>
+          <e p="Directors" t="Include">
+            <e p="ModeSwitcher.cs" t="Include" />
+          </e>
+          <e p="Effects" t="Include">
+            <e p="AutoDispose.cs" t="Include" />
+            <e p="AutoMove.cs" t="Include" />
+            <e p="AutoRotate.cs" t="Include" />
+            <e p="LineFadeOut.cs" t="Include" />
+          </e>
+          <e p="Enums" t="Include">
+            <e p="CameraZoomState.cs" t="Include" />
+            <e p="ItemQuality.cs" t="Include" />
+            <e p="WeaponState.cs" t="Include" />
+          </e>
+          <e p="Generators" t="Include">
+            <e p="Weapons" t="Include">
+              <e p="RifleGenerationPresets.cs" t="Include" />
+              <e p="RifleGenertationData.cs" t="Include" />
+              <e p="WeaponGenerator.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Helpers" t="Include">
+            <e p="ExtensionMethods.cs" t="Include" />
+            <e p="GridHelper.cs" t="Include" />
+            <e p="MathHelper.cs" t="Include" />
+            <e p="MatrixTools.cs" t="Include" />
+            <e p="Pair.cs" t="Include" />
+            <e p="PhysicalHit.cs" t="Include" />
+            <e p="RandomService.cs" t="Include" />
+            <e p="TransformHelper.cs" t="Include" />
+          </e>
+          <e p="Infrastructure" t="Include">
+            <e p="Map" t="Include">
+              <e p="Cell.cs" t="Include" />
+              <e p="CellData.cs" t="Include" />
+              <e p="Compass.cs" t="Include" />
+              <e p="Coordinate.cs" t="Include" />
+              <e p="Map.cs" t="Include" />
+              <e p="MapGen.cs" t="Include" />
+            </e>
+            <e p="Pathfinding" t="Include">
+              <e p="NavMap.cs" t="Include" />
+              <e p="NavNode.cs" t="Include" />
+              <e p="Pathfinder.cs" t="Include" />
+            </e>
+            <e p="Persistance" t="Include">
+              <e p="Session.cs" t="Include" />
+            </e>
+            <e p="Repositories" t="Include">
+              <e p="ParticleRepository.cs" t="Include" />
+              <e p="Repos.cs" t="Include" />
+              <e p="RiflePartsRepository.cs" t="Include" />
+              <e p="WeaponRepository.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Sandbox" t="Include">
+            <e p="ForceMove.cs" t="Include" />
+            <e p="RifleSpawner.cs" t="Include" />
+            <e p="ShootingRangeDirector.cs" t="Include" />
+            <e p="TacticalSandboxDirector.cs" t="Include" />
+          </e>
+          <e p="Tactical" t="Include">
+            <e p="TacticalCommanderView.cs" t="Include" />
+            <e p="TacticalController.cs" t="Include" />
+            <e p="VisualElements" t="Include">
+              <e p="MovementLine.cs" t="Include" />
+              <e p="MovementMarker.cs" t="Include" />
+            </e>
+          </e>
+          <e p="UI" t="Include">
+            <e p="Action" t="Include">
+              <e p="AttackPanel.cs" t="Include" />
+            </e>
+            <e p="AdvancedCrosshair.cs" t="Include" />
+            <e p="DynamicText.cs" t="Include" />
+            <e p="FaceView.cs" t="Include" />
+            <e p="FadeOut.cs" t="Include" />
+            <e p="RiflePanel.cs" t="Include" />
+          </e>
+          <e p="Weapons" t="Include">
+            <e p="AssemblyPart.cs" t="Include" />
+            <e p="BarrelAssembly.cs" t="Include" />
+            <e p="FiringMode.cs" t="Include" />
+            <e p="GrenadeLauncher" t="Include">
+              <e p="GrenadeLauncher.cs" t="Include" />
+              <e p="GrenadeLauncherStats.cs" t="Include" />
+            </e>
+            <e p="Munitions" t="Include">
+              <e p="Grenade.cs" t="Include" />
+            </e>
+            <e p="Rifle" t="Include">
+              <e p="Rifle.cs" t="Include" />
+              <e p="RifleAssembly.cs" t="Include" />
+              <e p="RifleAssemblyData.cs" t="Include" />
+              <e p="RifleStats.cs" t="Include" />
+            </e>
+            <e p="Weapon.cs" t="Include" />
+            <e p="WeaponStats.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Plugins" t="Include">
+          <e p="Editor" t="Include">
+            <e p="JetBrains" t="Include">
+              <e p="Unity3DRider.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Library" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="TacticalStress.sln" t="IncludeFlat" />
+      <e p="Temp" t="ExcludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+      </e>
+    </e>
+    <e p="$USER_HOME$/Library/Caches/Rider2017.3/resharper-host/local/Transient/ReSharperHost/v11/SolutionCaches/_TacticalStress.-668904767.00" t="ExcludeRecursive" />
+  </component>
+</project>

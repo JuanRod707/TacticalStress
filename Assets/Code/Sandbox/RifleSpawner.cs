@@ -40,9 +40,9 @@ namespace Code.Sandbox
 
             rifle.Initialize(WeaponGenerator.GenerateNewRifle(quality), body.transform, barrel.transform, stock.transform, mag.transform);
 
-            Panel.FillRifleStats(rifle.Stats);
+            Panel.FillRifleStats(rifle.GetWeaponStats() as RifleStats);
 
-            currentRifleStats = rifle.Stats;
+            currentRifleStats = rifle.GetWeaponStats() as RifleStats;
             currentRifleData = new RifleAssemblyData
             {
                 BarrelId = barrel.GetComponent<AssemblyPart>().AssemblyPartId,

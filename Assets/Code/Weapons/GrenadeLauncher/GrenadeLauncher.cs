@@ -10,7 +10,6 @@ namespace Code.Weapons.GrenadeLauncher
 {
     public class GrenadeLauncher : MonoBehaviour, Weapon
     {
-        public GrenadeLauncherStats Stats;
         public GameObject GrenadePrefab;
 
         private List<FiringMode> firingModes;
@@ -26,7 +25,7 @@ namespace Code.Weapons.GrenadeLauncher
         float accuracyModifier;
         private float currentAccuracy;
         private Action<int, int> displayAmmoAction = (a, b) => { };
-
+        GrenadeLauncherStats stats;
 
         public FiringMode CurrentMode { get { return firingModes[currentFiringMode]; } }
 
@@ -36,20 +35,20 @@ namespace Code.Weapons.GrenadeLauncher
 
         public void Initialize(GrenadeLauncherStats stats, Transform body, Transform barrel, Transform stock, Transform mag)
         {
-            Stats = stats;
-            currentAccuracy = Stats.Accuracy;
+            this.stats = stats;
+            currentAccuracy = this.stats.Accuracy;
             body.GetComponent<RifleAssembly>().Assemble(barrel, stock, mag);
             muzzleEffect = barrel.GetComponent<BarrelAssembly>().MuzzleEffect;
 
             fireSfx = GetComponent<AudioSource>();
 
             firingModes = CreateFiringModes();
-            CurrentAmmo = Stats.AmmoPerMag;
+            CurrentAmmo = this.stats.AmmoPerMag;
         }
 
         public void Reload()
         {
-            CurrentAmmo = Stats.AmmoPerMag;
+            CurrentAmmo = stats.AmmoPerMag;
         }
 
         public void CycleFiringMode()
@@ -63,9 +62,24 @@ namespace Code.Weapons.GrenadeLauncher
             accuracyModifier = CurrentMode.AccuracyModifier;
         }
 
+        public WeaponStats GetWeaponStats()
+        {
+            return stats;
+        }
+
+        public void Enable()
+        {
+            enabled = true;
+        }
+
+        public void Disable()
+        {
+            enabled = false;
+        }
+
         public void Aim()
         {
-            accuracyModifier = CurrentMode.AccuracyModifier + Stats.AimBonus;
+            accuracyModifier = CurrentMode.AccuracyModifier + stats.AimBonus;
         }
 
         public void Attack(Action<int, int> displayAmmo)
@@ -73,7 +87,7 @@ namespace Code.Weapons.GrenadeLauncher
             if (currentState == WeaponState.Ready)
             {
                 displayAmmoAction = displayAmmo;
-                var firingTime = CurrentMode.RoundsToFire * Stats.RateOfFire;
+                var firingTime = CurrentMode.RoundsToFire * stats.RateOfFire;
                 currentState = WeaponState.Firing;
                 StartCoroutine(TimedFire(firingTime));
             }
@@ -109,7 +123,7 @@ namespace Code.Weapons.GrenadeLauncher
                 grenade.Launch(200f);
 
                 CurrentAmmo--;
-                displayAmmoAction(CurrentAmmo, Stats.AmmoPerMag);
+                displayAmmoAction(CurrentAmmo, stats.AmmoPerMag);
                 fireSfx.Play();
                 DisplayMuzzle();
                 StartCoroutine(CycleBullet());
@@ -118,9 +132,9 @@ namespace Code.Weapons.GrenadeLauncher
 
         void Update()
         {
-            if (!isCycling && currentAccuracy < Stats.Accuracy)
+            if (!isCycling && currentAccuracy < stats.Accuracy)
             {
-                currentAccuracy += Stats.AimRecovery;
+                currentAccuracy += stats.AimRecovery;
             }
 
             if (currentState == WeaponState.Firing)
@@ -132,7 +146,7 @@ namespace Code.Weapons.GrenadeLauncher
         IEnumerator CycleBullet()
         {
             isCycling = true;
-            yield return new WaitForSeconds(Stats.RateOfFire);
+            yield return new WaitForSeconds(stats.RateOfFire);
             isCycling = false;
         }
 

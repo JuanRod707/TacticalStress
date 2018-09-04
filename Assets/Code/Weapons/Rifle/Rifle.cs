@@ -12,8 +12,6 @@ namespace Code.Weapons.Rifle
 {
     public class Rifle : MonoBehaviour, Weapon
     {
-        public RifleStats Stats;
-
         public FiringMode CurrentMode
         {
             get { return firingModes[currentFiringMode]; }
@@ -25,6 +23,7 @@ namespace Code.Weapons.Rifle
         GameObject hitParticle;
         GameObject bulletHole;
         ParticleSystem muzzleEffect;
+        private RifleStats stats;
         private AudioSource fireSfx;
         private bool isCycling;
         private int currentFiringMode;
@@ -38,6 +37,11 @@ namespace Code.Weapons.Rifle
             get { return currentAccuracy + accuracyModifier; }
         }
 
+        public WeaponStats GetWeaponStats()
+        {
+            return stats;
+        }
+
         public void Initialize(RifleStats stats, Transform body, Transform barrel, Transform stock, Transform mag)
         {
             if (Repos.ParticleRepo != null)
@@ -47,20 +51,20 @@ namespace Code.Weapons.Rifle
                 bulletHole = Repos.ParticleRepo.BulletHole;
             }
 
-            Stats = stats;
-            currentAccuracy = Stats.Accuracy;
+            this.stats = stats;
+            currentAccuracy = this.stats.Accuracy;
             body.GetComponent<RifleAssembly>().Assemble(barrel, stock, mag);
             muzzleEffect = barrel.GetComponent<BarrelAssembly>().MuzzleEffect;
 
             fireSfx = GetComponent<AudioSource>();
 
             firingModes = CreateFiringModes();
-            CurrentAmmo = Stats.AmmoPerMag;
+            CurrentAmmo = this.stats.AmmoPerMag;
         }
 
         public void Reload()
         {
-            CurrentAmmo = Stats.AmmoPerMag;
+            CurrentAmmo = stats.AmmoPerMag;
         }
 
         public void CycleFiringMode()
@@ -76,7 +80,7 @@ namespace Code.Weapons.Rifle
 
         public void Aim()
         {
-            accuracyModifier = CurrentMode.AccuracyModifier + Stats.AimBonus;
+            accuracyModifier = CurrentMode.AccuracyModifier + stats.AimBonus;
         }
 
         public void Attack(Action<int, int> displayAmmo)
@@ -84,7 +88,7 @@ namespace Code.Weapons.Rifle
             if (currentState == WeaponState.Ready)
             {
                 displayAmmoAction = displayAmmo;
-                var firingTime = CurrentMode.RoundsToFire * Stats.RateOfFire;
+                var firingTime = CurrentMode.RoundsToFire * stats.RateOfFire;
                 currentState = WeaponState.Firing;
                 StartCoroutine(TimedFire(firingTime));
             }
@@ -129,20 +133,20 @@ namespace Code.Weapons.Rifle
                 var ray = new Ray(firePosition, aimPoint - firePosition);
                 RaycastHit hit;
             
-                if (Physics.Raycast(ray, out hit, Stats.Range))
+                if (Physics.Raycast(ray, out hit, stats.Range))
                 {
                     if (hit.rigidbody != null)
                     {
                         var bodyPart = hit.rigidbody.GetComponent<BodyPart>();
                         if (bodyPart != null)
                         {
-                            bodyPart.ReceiveDamage(Stats.DamagePerRound);
+                            bodyPart.ReceiveDamage(stats.DamagePerRound);
                         }
 
                         var pushable = hit.rigidbody.GetComponent<Pushable>();
                         if (pushable != null)
                         {
-                            pushable.Push(hit.point, Stats.PushForce);
+                            pushable.Push(hit.point, stats.PushForce);
                         }
                     }
                     else
@@ -158,13 +162,13 @@ namespace Code.Weapons.Rifle
                     DisplayShot(aimPoint);
                 }
             
-                if (currentAccuracy > 1 && currentAccuracy > Stats.MinAccuracy)
+                if (currentAccuracy > 1 && currentAccuracy > stats.MinAccuracy)
                 {
-                    currentAccuracy -= Stats.Recoil;
+                    currentAccuracy -= stats.Recoil;
                 }
 
                 CurrentAmmo--;
-                displayAmmoAction(CurrentAmmo, Stats.AmmoPerMag);
+                displayAmmoAction(CurrentAmmo, stats.AmmoPerMag);
                 fireSfx.Play();
                 DisplayMuzzle();
                 StartCoroutine(CycleBullet());
@@ -173,9 +177,9 @@ namespace Code.Weapons.Rifle
 
         void Update()
         {
-            if (!isCycling && currentAccuracy < Stats.Accuracy)
+            if (!isCycling && currentAccuracy < stats.Accuracy)
             {
-                currentAccuracy += Stats.AimRecovery;
+                currentAccuracy += stats.AimRecovery;
             }
 
             if (currentState == WeaponState.Firing)
@@ -187,7 +191,7 @@ namespace Code.Weapons.Rifle
         IEnumerator CycleBullet()
         {
             isCycling = true;
-            yield return new WaitForSeconds(Stats.RateOfFire);
+            yield return new WaitForSeconds(stats.RateOfFire);
             isCycling = false;
         }
 
@@ -195,11 +199,11 @@ namespace Code.Weapons.Rifle
         {
             var randomPoint = Random.insideUnitSphere * GetComponentInParent<Actor>().Inaccuracy;
             var cam = Camera.main.transform;
-            var result = (cam.forward * Stats.Range) + randomPoint;
+            var result = (cam.forward * stats.Range) + randomPoint;
 
             var ray = new Ray(cam.position, result);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, Stats.Range))
+            if (Physics.Raycast(ray, out hit, stats.Range))
             {
                 result = hit.point;
             }
@@ -226,6 +230,16 @@ namespace Code.Weapons.Rifle
         void ResetAccuracyModifier()
         {
             accuracyModifier = 0f;
+        }
+        
+        public void Enable()
+        {
+            enabled = true;
+        }
+
+        public void Disable()
+        {
+            enabled = false;
         }
     }
 }

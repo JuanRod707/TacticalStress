@@ -6,6 +6,7 @@ using Code.Infrastructure.Persistance;
 using Code.Infrastructure.Repositories;
 using Code.UI;
 using Code.UI.Action;
+using Code.Weapons.Rifle;
 using UnityEngine;
 
 namespace Code.Sandbox
@@ -15,6 +16,7 @@ namespace Code.Sandbox
         public DualPointCamera Camera;
         public Actor Actor;
         public AttackPanel ActionModePanel;
+        public GameObject RiflePrefab;
 
         void Start()
         {
@@ -26,7 +28,8 @@ namespace Code.Sandbox
 
         void InitializeRifle()
         {
-            var rifle = Actor.ActionController.Weapon;
+            var weaponSpot = Actor.ActionController.WeaponSpot;
+            var rifle = Instantiate(RiflePrefab, weaponSpot).GetComponent<Rifle>();
 
             if (Session.GeneratedRifleStats == null)
             {
@@ -47,6 +50,14 @@ namespace Code.Sandbox
 
                 rifle.Initialize(Session.GeneratedRifleStats, body.transform, barrel.transform,
                     stock.transform, mag.transform);
+            }
+        }
+
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                Actor.TimeActions.ResetTimeUnits();
             }
         }
     }
