@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Assets.Code.Enums;
 using Assets.Code.Weapons.Munitions;
-using Code.Weapons.Rifle;
 using UnityEngine;
 
 namespace Code.Weapons.GrenadeLauncher
@@ -14,7 +13,7 @@ namespace Code.Weapons.GrenadeLauncher
 
         private List<FiringMode> firingModes;
         
-        ParticleSystem muzzleEffect;
+        public ParticleSystem muzzleEffect;
         private AudioSource fireSfx;
 
         private bool isCycling;
@@ -33,12 +32,12 @@ namespace Code.Weapons.GrenadeLauncher
 
         public float CurrentAccuracy { get { return currentAccuracy + accuracyModifier; } }
 
-        public void Initialize(GrenadeLauncherStats stats, Transform body, Transform barrel, Transform stock, Transform mag)
+        public void Initialize(GrenadeLauncherStats launcherStats)
         {
-            this.stats = stats;
+            this.stats = launcherStats;
             currentAccuracy = this.stats.Accuracy;
-            body.GetComponent<RifleAssembly>().Assemble(barrel, stock, mag);
-            muzzleEffect = barrel.GetComponent<BarrelAssembly>().MuzzleEffect;
+            //body.GetComponent<RifleAssembly>().Assemble(barrel, stock, mag);
+            //muzzleEffect = barrel.GetComponent<BarrelAssembly>().MuzzleEffect;
 
             fireSfx = GetComponent<AudioSource>();
 
@@ -120,7 +119,7 @@ namespace Code.Weapons.GrenadeLauncher
             if (!isCycling && CurrentAmmo > 0)
             {
                 var grenade = Instantiate(GrenadePrefab, muzzleEffect.transform.position, transform.rotation).GetComponent<Grenade>();
-                grenade.Launch(200f);
+                grenade.Launch(stats.LaunchForce);
 
                 CurrentAmmo--;
                 displayAmmoAction(CurrentAmmo, stats.AmmoPerMag);

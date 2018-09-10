@@ -5,20 +5,20 @@ namespace Code.Generators.Weapons
 {
     static class RifleGenerationPresets
     {
-        public static Dictionary<ItemQuality, RifleGenertationData> RifleGenData { get; private set; }
+        public static Dictionary<ItemQuality, WeaponGenertationData> GenData { get; private set; }
 
         static RifleGenerationPresets()
         {
-            RifleGenData = new Dictionary<ItemQuality, RifleGenertationData>();
-            RifleGenData.Add(ItemQuality.Common, CreateCommonRifleData());
-            RifleGenData.Add(ItemQuality.Uncommon, CreateUncommonRifleData());
-            RifleGenData.Add(ItemQuality.Rare, CreateRareRifleData());
-            RifleGenData.Add(ItemQuality.Legendary, CreateLegendaryRifleData());
+            GenData = new Dictionary<ItemQuality, WeaponGenertationData>();
+            GenData.Add(ItemQuality.Common, CreateCommonRifleData());
+            GenData.Add(ItemQuality.Uncommon, CreateUncommonRifleData());
+            GenData.Add(ItemQuality.Rare, CreateRareRifleData());
+            GenData.Add(ItemQuality.Legendary, CreateLegendaryRifleData());
         }
 
-        static RifleGenertationData CreateCommonRifleData()
+        static WeaponGenertationData CreateCommonRifleData()
         {
-            return new RifleGenertationData
+            return new WeaponGenertationData
             {
                 MinAccuracy = 46f,
                 MaxAccuracy = 52f,
@@ -35,9 +35,9 @@ namespace Code.Generators.Weapons
             };
         }
 
-        static RifleGenertationData CreateUncommonRifleData()
+        static WeaponGenertationData CreateUncommonRifleData()
         {
-            return new RifleGenertationData
+            return new WeaponGenertationData
             {
                 MinAccuracy = 50,
                 MaxAccuracy = 65f,
@@ -54,10 +54,10 @@ namespace Code.Generators.Weapons
             };
         }
 
-        static RifleGenertationData CreateRareRifleData()
+        static WeaponGenertationData CreateRareRifleData()
         {
 
-            return new RifleGenertationData
+            return new WeaponGenertationData
             {
                 MinAccuracy = 60f,
                 MaxAccuracy = 75f,
@@ -74,9 +74,9 @@ namespace Code.Generators.Weapons
             };
         }
 
-        static RifleGenertationData CreateLegendaryRifleData()
+        static WeaponGenertationData CreateLegendaryRifleData()
         {
-            return new RifleGenertationData
+            return new WeaponGenertationData
             {
                 MinAccuracy = 75f,
                 MaxAccuracy = 90f,

@@ -3,7 +3,7 @@
 namespace Code.Generators.Weapons
 {
     [Serializable]
-    public class RifleGenertationData
+    public class WeaponGenertationData
     {
         public float MinRateOfFire;
         public float MaxRateOfFire;

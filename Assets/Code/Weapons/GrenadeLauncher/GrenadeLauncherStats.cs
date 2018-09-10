@@ -19,6 +19,7 @@ namespace Code.Weapons.GrenadeLauncher
         public float AimZoomModifier { get; set; }
         public int AimPercentageCost { get; set; }
         public int ReloadPercentageCost { get; set; }
+        public float LaunchForce { get; set; }
 
         public GrenadeLauncherStats()
         {
@@ -26,6 +27,7 @@ namespace Code.Weapons.GrenadeLauncher
             AimZoomModifier = 25f;
             AimPercentageCost = 10;
             ReloadPercentageCost = 20;
+            LaunchForce = 1100f;
         }
     }
 }
