@@ -47,9 +47,10 @@
           </e>
           <e p="Generators" t="Include">
             <e p="Weapons" t="Include">
+              <e p="LauncherGenerationPresets.cs" t="Include" />
               <e p="RifleGenerationPresets.cs" t="Include" />
-              <e p="RifleGenertationData.cs" t="Include" />
               <e p="WeaponGenerator.cs" t="Include" />
+              <e p="WeaponGenertationData.cs" t="Include" />
             </e>
           </e>
           <e p="Helpers" t="Include">
@@ -119,6 +120,7 @@
               <e p="GrenadeLauncherStats.cs" t="Include" />
             </e>
             <e p="Munitions" t="Include">
+              <e p="ExplosionDamage.cs" t="Include" />
               <e p="Grenade.cs" t="Include" />
             </e>
             <e p="Rifle" t="Include">

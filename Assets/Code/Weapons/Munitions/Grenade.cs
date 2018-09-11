@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Code.BodyParts;
+using Code.Weapons.Munitions;
 using UnityEngine;
 
 namespace Assets.Code.Weapons.Munitions
@@ -7,8 +8,9 @@ namespace Assets.Code.Weapons.Munitions
     public class Grenade : MonoBehaviour
     {
         public GameObject ExplosionPrefab;
+        public GameObject ExplosionDamageEffect;
         public float Range;
-        public float DmgPerFrag;
+        public float Damage;
         public float PushForce;
         public int FragmentCount;
 
@@ -26,10 +28,13 @@ namespace Assets.Code.Weapons.Munitions
 
         void Fragment()
         {
-            foreach (var _ in Enumerable.Range(0, FragmentCount))
-            {
-                ShootFragment(Random.insideUnitSphere + transform.position);
-            }
+            var damageEffect = Instantiate(ExplosionDamageEffect, transform.position, Quaternion.identity).GetComponent<ExplosionDamage>();
+            damageEffect.Initialize(Damage, PushForce, Range);
+            
+//            foreach (var _ in Enumerable.Range(0, FragmentCount))
+//            {
+//                ShootFragment(Random.insideUnitSphere + transform.position);
+//            }
         }
 
         void ShootFragment(Vector3 direction)
@@ -45,7 +50,7 @@ namespace Assets.Code.Weapons.Munitions
                     var bodyPart = hit.rigidbody.GetComponent<BodyPart>();
                     if (bodyPart != null)
                     {
-                        bodyPart.ReceiveDamage(DmgPerFrag);
+                        bodyPart.ReceiveDamage(Damage);
                     }
 
                     var pushable = hit.rigidbody.GetComponent<Pushable>();
