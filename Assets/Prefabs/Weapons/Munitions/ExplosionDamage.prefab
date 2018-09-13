@@ -53,6 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EffectDuration: 0.5
+  DistanceFactor: 1
 --- !u!135 &135491515989002332
 SphereCollider:
   m_ObjectHideFlags: 1

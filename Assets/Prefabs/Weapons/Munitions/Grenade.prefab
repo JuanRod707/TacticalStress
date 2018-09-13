@@ -173,9 +173,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ExplosionPrefab: {fileID: 1451079928450188, guid: bc5e85fb215536f4c9896b5a7637397f,
     type: 2}
-  Range: 20
-  DmgPerFrag: 15
-  PushForce: 600
+  ExplosionDamageEffect: {fileID: 1673609890121088, guid: 1c4d08656753b47c0b8a904914520442,
+    type: 2}
+  Range: 5
+  Damage: 12
+  PushForce: 2000
   FragmentCount: 30
 --- !u!135 &135689422503497606
 SphereCollider:
