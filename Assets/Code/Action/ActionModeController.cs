@@ -3,20 +3,17 @@ using Code.Weapons;
 using System;
 using Code.Cameras;
 using Code.Helpers;
-using Code.Weapons.Rifle;
 using UnityEngine;
 
 namespace Code.Action
 {
     public class ActionModeController: MonoBehaviour
     {
-        
-        public Transform WeaponSpot;
         public Actor Actor;
 
         public Weapon Weapon
         {
-            get { return weapon ?? (weapon = WeaponSpot.GetComponentInChildren<Weapon>()); }
+            get { return weapon ?? (weapon = Actor.WeaponSpot.GetComponentInChildren<Weapon>()); }
         }
 
         private Action<int, int> updateTimeDisplay = (a, b) => { };

@@ -3,12 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using Assets.Code.Enums;
 using Assets.Code.Weapons.Munitions;
+using Code.Enums;
+using Code.Generators.Weapons;
 using UnityEngine;
 
 namespace Code.Weapons.GrenadeLauncher
 {
     public class GrenadeLauncher : MonoBehaviour, Weapon
     {
+        public WeaponType WeaponType { get { return WeaponType.GrenadeLauncher; } }
+
         public GameObject GrenadePrefab;
 
         private List<FiringMode> firingModes;
@@ -147,6 +151,11 @@ namespace Code.Weapons.GrenadeLauncher
             isCycling = true;
             yield return new WaitForSeconds(stats.RateOfFire);
             isCycling = false;
+        }
+
+        public void Randomize()
+        {
+            Initialize(WeaponGenerator.GenerateNewGrenadeLauncher(ItemQuality.Common));
         }
 
         void DisplayMuzzle()

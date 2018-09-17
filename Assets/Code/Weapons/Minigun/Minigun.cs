@@ -7,27 +7,29 @@ using Code.BodyParts;
 using Code.Enums;
 using Code.Generators.Weapons;
 using Code.Infrastructure.Repositories;
+using Code.Weapons.Rifle;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Code.Weapons.Rifle
+namespace Code.Weapons.Minigun
 {
-    public class Rifle : MonoBehaviour, Weapon
+    public class Minigun : MonoBehaviour, Weapon
     {
         public FiringMode CurrentMode
         {
             get { return firingModes[currentFiringMode]; }
         }
+
         public int CurrentAmmo { get; private set; }
+        public WeaponType WeaponType { get { return WeaponType.Minigun; } }
 
-        public WeaponType WeaponType { get { return WeaponType.Rifle;} }
-
+        private BarrelRotator barrel;
         private List<FiringMode> firingModes;
         GameObject shotLine;
         GameObject hitParticle;
         GameObject bulletHole;
-        ParticleSystem muzzleEffect;
-        private RifleStats stats;
+        public ParticleSystem muzzleEffect;
+        private MinigunStats stats;
         private AudioSource fireSfx;
         private bool isCycling;
         private int currentFiringMode;
@@ -46,7 +48,7 @@ namespace Code.Weapons.Rifle
             return stats;
         }
 
-        public void Initialize(RifleStats stats, Transform body, Transform barrel, Transform stock, Transform mag)
+        public void Initialize(MinigunStats stats)
         {
             if (Repos.ParticleRepo != null)
             {
@@ -55,10 +57,11 @@ namespace Code.Weapons.Rifle
                 bulletHole = Repos.ParticleRepo.BulletHole;
             }
 
+            barrel = GetComponentInChildren<BarrelRotator>();
             this.stats = stats;
             currentAccuracy = this.stats.Accuracy;
-            body.GetComponent<RifleAssembly>().Assemble(barrel, stock, mag);
-            muzzleEffect = barrel.GetComponent<BarrelAssembly>().MuzzleEffect;
+            //body.GetComponent<RifleAssembly>().Assemble(barrel, stock, mag);
+            //muzzleEffect = barrel.GetComponent<BarrelAssembly>().MuzzleEffect;
 
             fireSfx = GetComponent<AudioSource>();
 
@@ -104,18 +107,18 @@ namespace Code.Weapons.Rifle
 
             modes.Add(new FiringMode
             {
-                ModeName = "Semi",
-                AccuracyModifier = 5f,
-                RoundsToFire = 1,
-                TimePercentageCost = 30
+                ModeName = "Burst",
+                AccuracyModifier = 0f,
+                RoundsToFire = 10,
+                TimePercentageCost = 45
             });
 
             modes.Add(new FiringMode
             {
-                ModeName = "3-round burst",
-                AccuracyModifier = -15f,
-                RoundsToFire = 3,
-                TimePercentageCost = 40
+                ModeName = "Barrage",
+                AccuracyModifier = -5f,
+                RoundsToFire = 30,
+                TimePercentageCost = 65
             });
 
             return modes;
@@ -175,6 +178,7 @@ namespace Code.Weapons.Rifle
                 displayAmmoAction(CurrentAmmo, stats.AmmoPerMag);
                 fireSfx.Play();
                 DisplayMuzzle();
+                barrel.Accelerate();
                 StartCoroutine(CycleBullet());
             }
         }
@@ -238,13 +242,7 @@ namespace Code.Weapons.Rifle
 
         public void Randomize()
         {
-            var body = Instantiate(Repos.RifleRepo.GetRandomBody(), transform);
-            var stock = Instantiate(Repos.RifleRepo.GetRandomStock());
-            var mag = Instantiate(Repos.RifleRepo.GetRandomMag());
-            var barrel = Instantiate(Repos.RifleRepo.GetRandomBarrel());
-
-            Initialize(WeaponGenerator.GenerateNewRifle(ItemQuality.Common), body.transform, barrel.transform,
-                stock.transform, mag.transform);
+            Initialize(WeaponGenerator.GenerateNewMinigun(ItemQuality.Common));
         }
 
         public void Enable()

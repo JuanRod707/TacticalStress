@@ -3,7 +3,6 @@ using Code.Action;
 using Code.Tactical;
 using Code.UI;
 using Code.UI.Action;
-using Code.Weapons;
 using UnityEngine;
 
 namespace Code.Actors
@@ -15,7 +14,8 @@ namespace Code.Actors
         public ActionModeInput ActionInput;
         public ActionModeController ActionController;
         public TacticalController TacticalController;
-
+        public ActorAnimations AnimationController;
+        public Transform WeaponSpot;
         public TimeActions TimeActions { get; private set; }
 
         public float Inaccuracy
@@ -47,6 +47,15 @@ namespace Code.Actors
             TacticalController.Activate();
             ActionController.Deactivate();
             ActionInput.Deactivate();
+        }
+
+        public void EquipWeapon(Transform weapon)
+        {
+            weapon.SetParent(WeaponSpot);
+            weapon.localPosition = Vector3.zero;
+            weapon.localScale = Vector3.one;
+            weapon.localRotation = Quaternion.identity;
+            AnimationController.SwapWeapon();
         }
     }
 }

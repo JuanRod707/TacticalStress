@@ -1,33 +1,37 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Assets.Code.Enums;
 using Code.Actors;
 using Code.BodyParts;
 using Code.Enums;
 using Code.Generators.Weapons;
 using Code.Infrastructure.Repositories;
+using Code.Weapons.Rifle;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Code.Weapons.Rifle
+namespace Code.Weapons.Shotgun
 {
-    public class Rifle : MonoBehaviour, Weapon
+    public class Shotgun : MonoBehaviour, Weapon
     {
         public FiringMode CurrentMode
         {
             get { return firingModes[currentFiringMode]; }
         }
+
         public int CurrentAmmo { get; private set; }
+        public WeaponType WeaponType { get { return WeaponType.Shotgun; } }
 
-        public WeaponType WeaponType { get { return WeaponType.Rifle;} }
-
+        public ParticleSystem muzzleEffect;
+        
         private List<FiringMode> firingModes;
         GameObject shotLine;
         GameObject hitParticle;
         GameObject bulletHole;
-        ParticleSystem muzzleEffect;
-        private RifleStats stats;
+        //ParticleSystem muzzleEffect;
+        private ShotgunStats stats;
         private AudioSource fireSfx;
         private bool isCycling;
         private int currentFiringMode;
@@ -46,7 +50,7 @@ namespace Code.Weapons.Rifle
             return stats;
         }
 
-        public void Initialize(RifleStats stats, Transform body, Transform barrel, Transform stock, Transform mag)
+        public void Initialize(ShotgunStats stats)
         {
             if (Repos.ParticleRepo != null)
             {
@@ -57,8 +61,8 @@ namespace Code.Weapons.Rifle
 
             this.stats = stats;
             currentAccuracy = this.stats.Accuracy;
-            body.GetComponent<RifleAssembly>().Assemble(barrel, stock, mag);
-            muzzleEffect = barrel.GetComponent<BarrelAssembly>().MuzzleEffect;
+            //body.GetComponent<RifleAssembly>().Assemble(barrel, stock, mag);
+            //muzzleEffect = barrel.GetComponent<BarrelAssembly>().MuzzleEffect;
 
             fireSfx = GetComponent<AudioSource>();
 
@@ -110,14 +114,6 @@ namespace Code.Weapons.Rifle
                 TimePercentageCost = 30
             });
 
-            modes.Add(new FiringMode
-            {
-                ModeName = "3-round burst",
-                AccuracyModifier = -15f,
-                RoundsToFire = 3,
-                TimePercentageCost = 40
-            });
-
             return modes;
         }
 
@@ -132,40 +128,43 @@ namespace Code.Weapons.Rifle
         {
             if (!isCycling && CurrentAmmo > 0)
             {
-                var aimPoint = GetRandomArcPoint();
-                var firePosition = muzzleEffect.transform.position;
-                var ray = new Ray(firePosition, aimPoint - firePosition);
-                RaycastHit hit;
-            
-                if (Physics.Raycast(ray, out hit, stats.Range))
+                foreach (var _ in Enumerable.Range(0, stats.PelletCount))
                 {
-                    if (hit.rigidbody != null)
+                    var aimPoint = GetRandomArcPoint();
+                    var firePosition = muzzleEffect.transform.position;
+                    var ray = new Ray(firePosition, aimPoint - firePosition);
+                    RaycastHit hit;
+
+                    if (Physics.Raycast(ray, out hit, stats.Range))
                     {
-                        var bodyPart = hit.rigidbody.GetComponent<BodyPart>();
-                        if (bodyPart != null)
+                        if (hit.rigidbody != null)
                         {
-                            bodyPart.ReceiveDamage(stats.DamagePerRound);
+                            var bodyPart = hit.rigidbody.GetComponent<BodyPart>();
+                            if (bodyPart != null)
+                            {
+                                bodyPart.ReceiveDamage(stats.DamagePerRound);
+                            }
+
+                            var pushable = hit.rigidbody.GetComponent<Pushable>();
+                            if (pushable != null)
+                            {
+                                pushable.Push(hit.point, stats.PushForce);
+                            }
+                        }
+                        else
+                        {
+                            DisplayHit(hit.point, bulletHole);
                         }
 
-                        var pushable = hit.rigidbody.GetComponent<Pushable>();
-                        if (pushable != null)
-                        {
-                            pushable.Push(hit.point, stats.PushForce);
-                        }
+                        DisplayHit(hit.point, hitParticle);
+                        DisplayShot(hit.point);
                     }
                     else
                     {
-                        DisplayHit(hit.point, bulletHole);
+                        DisplayShot(aimPoint);
                     }
+                }
 
-                    DisplayHit(hit.point, hitParticle);
-                    DisplayShot(hit.point);
-                }
-                else
-                {
-                    DisplayShot(aimPoint);
-                }
-            
                 if (currentAccuracy > 1 && currentAccuracy > stats.MinAccuracy)
                 {
                     currentAccuracy -= stats.Recoil;
@@ -238,13 +237,7 @@ namespace Code.Weapons.Rifle
 
         public void Randomize()
         {
-            var body = Instantiate(Repos.RifleRepo.GetRandomBody(), transform);
-            var stock = Instantiate(Repos.RifleRepo.GetRandomStock());
-            var mag = Instantiate(Repos.RifleRepo.GetRandomMag());
-            var barrel = Instantiate(Repos.RifleRepo.GetRandomBarrel());
-
-            Initialize(WeaponGenerator.GenerateNewRifle(ItemQuality.Common), body.transform, barrel.transform,
-                stock.transform, mag.transform);
+            Initialize(WeaponGenerator.GenerateNewShotgun(ItemQuality.Common));
         }
 
         public void Enable()
