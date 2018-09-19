@@ -1,4 +1,5 @@
 ﻿using Code.BodyParts;
+using Code.Interfaces;
 using UnityEngine;
 
 namespace Code.Weapons.Munitions
@@ -26,10 +27,10 @@ namespace Code.Weapons.Munitions
 
             if (IsInLineOfSight(other.transform, other, distance))
             {
-                var bodyPart = other.transform.parent.GetComponent<BodyPart>();
-                if (bodyPart != null)
+                var damageable = other.transform.parent.GetComponent<Damageable>();
+                if (damageable != null)
                 {
-                    bodyPart.ReceiveDamage(damage / (distance * DistanceFactor));
+                    damageable.ReceiveDamage(damage / (distance * DistanceFactor));
                 }
 
                 var pushable = other.transform.parent.GetComponent<Pushable>();

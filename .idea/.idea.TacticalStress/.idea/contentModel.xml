@@ -12,6 +12,7 @@
           </e>
           <e p="Actors" t="Include">
             <e p="Actor.cs" t="Include" />
+            <e p="ActorAnimations.cs" t="Include" />
             <e p="Stats.cs" t="Include" />
             <e p="TimeActions.cs" t="Include" />
           </e>
@@ -31,6 +32,9 @@
             <e p="DualPointCamera.cs" t="Include" />
             <e p="TacticalCameraCrane.cs" t="Include" />
           </e>
+          <e p="Constructed" t="Include">
+            <e p="Destructible.cs" t="Include" />
+          </e>
           <e p="Directors" t="Include">
             <e p="ModeSwitcher.cs" t="Include" />
           </e>
@@ -44,11 +48,14 @@
             <e p="CameraZoomState.cs" t="Include" />
             <e p="ItemQuality.cs" t="Include" />
             <e p="WeaponState.cs" t="Include" />
+            <e p="WeaponType.cs" t="Include" />
           </e>
           <e p="Generators" t="Include">
             <e p="Weapons" t="Include">
               <e p="LauncherGenerationPresets.cs" t="Include" />
+              <e p="MinigunGenerationPresets.cs" t="Include" />
               <e p="RifleGenerationPresets.cs" t="Include" />
+              <e p="ShotgunGenerationPresets.cs" t="Include" />
               <e p="WeaponGenerator.cs" t="Include" />
               <e p="WeaponGenertationData.cs" t="Include" />
             </e>
@@ -87,6 +94,9 @@
               <e p="WeaponRepository.cs" t="Include" />
             </e>
           </e>
+          <e p="Interfaces" t="Include">
+            <e p="Damageable.cs" t="Include" />
+          </e>
           <e p="Sandbox" t="Include">
             <e p="ForceMove.cs" t="Include" />
             <e p="RifleSpawner.cs" t="Include" />
@@ -119,6 +129,11 @@
               <e p="GrenadeLauncher.cs" t="Include" />
               <e p="GrenadeLauncherStats.cs" t="Include" />
             </e>
+            <e p="Minigun" t="Include">
+              <e p="BarrelRotator.cs" t="Include" />
+              <e p="Minigun.cs" t="Include" />
+              <e p="MinigunStats.cs" t="Include" />
+            </e>
             <e p="Munitions" t="Include">
               <e p="ExplosionDamage.cs" t="Include" />
               <e p="Grenade.cs" t="Include" />
@@ -128,6 +143,10 @@
               <e p="RifleAssembly.cs" t="Include" />
               <e p="RifleAssemblyData.cs" t="Include" />
               <e p="RifleStats.cs" t="Include" />
+            </e>
+            <e p="Shotgun" t="Include">
+              <e p="Shotgun.cs" t="Include" />
+              <e p="ShotgunStats.cs" t="Include" />
             </e>
             <e p="Weapon.cs" t="Include" />
             <e p="WeaponStats.cs" t="Include" />

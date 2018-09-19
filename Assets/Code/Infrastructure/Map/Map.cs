@@ -42,7 +42,7 @@ namespace Code.Infrastructure.Map
         {
             if(!GridHelper.IsBorderTile(cell.Coordinate, SizeX, SizeZ))
             {
-                var roll = RandomService.GetRandom(0, 100);
+                var roll = RandomService.GetRandom(1, 101);
                 if (roll > wallChance)
                 {
                     cell.Passable = true;

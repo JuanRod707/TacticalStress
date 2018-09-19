@@ -1,10 +1,11 @@
 ﻿using Code.Infrastructure.Repositories;
+using Code.Interfaces;
 using Code.UI;
 using UnityEngine;
 
 namespace Code.BodyParts
 {
-    public class BodyPart : MonoBehaviour
+    public class BodyPart : MonoBehaviour, Damageable
     {
         public float HitPoints;
         public float DamageFactor;

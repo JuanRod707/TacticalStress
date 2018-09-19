@@ -7,6 +7,7 @@ using Code.BodyParts;
 using Code.Enums;
 using Code.Generators.Weapons;
 using Code.Infrastructure.Repositories;
+using Code.Interfaces;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -141,10 +142,10 @@ namespace Code.Weapons.Rifle
                 {
                     if (hit.rigidbody != null)
                     {
-                        var bodyPart = hit.rigidbody.GetComponent<BodyPart>();
-                        if (bodyPart != null)
+                        var damageable = hit.rigidbody.GetComponent<Damageable>();
+                        if (damageable != null)
                         {
-                            bodyPart.ReceiveDamage(stats.DamagePerRound);
+                            damageable.ReceiveDamage(stats.DamagePerRound);
                         }
 
                         var pushable = hit.rigidbody.GetComponent<Pushable>();
