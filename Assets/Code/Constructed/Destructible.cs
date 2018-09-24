@@ -8,7 +8,8 @@ namespace Code.Constructed
         public float StartingHp;
         public GameObject BrokenPrefab;
         
-        public float currentHp;
+        float currentHp;
+        private bool destroyed;
         
         void Start()
         {
@@ -18,10 +19,11 @@ namespace Code.Constructed
         public void ReceiveDamage(float damage)
         {
             currentHp -= damage;
-            if (currentHp <= 0f)
+            if (currentHp <= 0f && !destroyed)
             {
                 Instantiate(BrokenPrefab, transform.position, transform.rotation);
                 Destroy(gameObject);
+                destroyed = true;
             }
         }
     }

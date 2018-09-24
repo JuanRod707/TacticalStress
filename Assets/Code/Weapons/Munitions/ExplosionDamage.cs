@@ -43,15 +43,15 @@ namespace Code.Weapons.Munitions
 
         bool IsInLineOfSight(Transform target, Collider targetCollider, float distance)
         {
-            RaycastHit hit;
-            var ray = new Ray(transform.position, target.position);
-            if (Physics.Raycast(ray, out hit, distance))
-            {
-                if (!hit.collider.Equals(targetCollider))
-                {
-                    return false;
-                }
-            }
+//            RaycastHit hit;
+//            var ray = new Ray(transform.position, target.position);
+//            if (Physics.Raycast(ray, out hit, distance))
+//            {
+//                if (!hit.collider.Equals(targetCollider))
+//                {
+//                    return false;
+//                }
+//            }
 
             return true;
         }
