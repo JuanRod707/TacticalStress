@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Assets.Code.Interfaces;
 using Code.Actors;
 using Code.Directors;
 using Code.Helpers;
@@ -8,6 +9,7 @@ using Code.Infrastructure.Pathfinding;
 using Code.Tactical.VisualElements;
 using Code.UI.Action;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Code.Tactical
 {
